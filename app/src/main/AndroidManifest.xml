@@ -44,6 +44,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Results"></activity>
+            android:label="@string/title_activity_maps"></activity>
+        <activity android:name=".MainAirport"></activity>
     </application>
 
 </manifest>
