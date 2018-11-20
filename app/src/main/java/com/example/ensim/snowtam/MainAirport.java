@@ -7,19 +7,22 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MainAirport extends AppCompatActivity implements OnMapReadyCallback{
     private GoogleMap mMap;
-    private int lon = 2, lat = 9;
+    private double lon, lat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_airport);
         TextView airportName = findViewById(R.id.textViewName);
+        lat = getIntent().getDoubleExtra("latitude", 0);
+        lon = getIntent().getDoubleExtra("longitude",0);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
         mapFragment.getMapAsync(this);
@@ -33,5 +36,15 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         LatLng airport = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent i = new Intent(MainAirport.this, MapsActivity.class);
+                i.putExtra("longitude", lon);
+                i.putExtra("latitude", lat);
+                startActivity(i);
+            }
+        });
+
     }
 }
