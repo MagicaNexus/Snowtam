@@ -20,7 +20,7 @@ import Model.ListAirportLocation;
 
 public class Accueil extends AppCompatActivity {
 
-    final ArrayList<Airport> listAirport = new ArrayList<Airport>();
+    public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +120,7 @@ public class Accueil extends AppCompatActivity {
                             ap.setLongitude(response.getData().get(0).getLongitude());
                             ap.setName(response.getData().get(0).getAirport_name());
                             listAirport.add(ap);
+
                         }
                     };
                     Response.ErrorListener errorListener = new Response.ErrorListener() {
@@ -146,7 +147,9 @@ public class Accueil extends AppCompatActivity {
                     if(airportsCode.get(i).length()==0)OK=false;
                 }
 
+
                 if (OK) {
+                    Log.d("Airportsize", String.valueOf(listAirport.size()));
 
                     Intent intent = new Intent(Accueil.this, Results.class);
                     Bundle bundle = new Bundle();
