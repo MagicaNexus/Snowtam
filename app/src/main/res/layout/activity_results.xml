@@ -8,8 +8,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="179dp"
-        android:layout_height="238dp"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926">
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/updateTime3"
@@ -60,12 +60,11 @@
 
         <View
             android:id="@+id/view3"
-            android:layout_width="169dp"
-            android:layout_height="233dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3"
             app:layout_constraintVertical_bias="0.0" />
@@ -110,8 +109,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="179dp"
-        android:layout_height="238dp"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -121,7 +120,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926">
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/updateTime2"
@@ -162,12 +161,11 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_width="169dp"
-            android:layout_height="236dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
             app:layout_constraintVertical_bias="0.0" />
@@ -212,8 +210,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout1"
-        android:layout_width="173dp"
-        android:layout_height="238dp"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -264,10 +262,11 @@
 
         <View
             android:id="@+id/view1"
-            android:layout_width="182dp"
-            android:layout_height="236dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout1"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout1"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout1"
@@ -314,8 +313,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout0"
-        android:layout_width="179dp"
-        android:layout_height="238dp"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -367,11 +366,10 @@
         <View
             android:id="@+id/view0"
             android:layout_width="169dp"
-            android:layout_height="236dp"
+            android:layout_height="160dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout0"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout0"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout0"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout0"
             app:layout_constraintVertical_bias="0.0" />
@@ -413,4 +411,18 @@
             app:layout_constraintTop_toTopOf="@+id/view0"
             app:layout_constraintVertical_bias="0.66" />
     </android.support.constraint.ConstraintLayout>
+
+    <fragment
+        android:id="@+id/mapViewResults"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" />
 </android.support.constraint.ConstraintLayout>

@@ -13,14 +13,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private int lon;
-    private int lat;
+    private double longi;
+    private double lati;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lat = getIntent().getIntExtra("lat",0);
-        lon = getIntent().getIntExtra("lon",0);
+        lati = getIntent().getDoubleExtra("latitude", 0);
+        longi = getIntent().getDoubleExtra("longitude",0);
 
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -44,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng airport = new LatLng(lat, lon);
+        LatLng airport = new LatLng(lati, longi);
         mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
     }
