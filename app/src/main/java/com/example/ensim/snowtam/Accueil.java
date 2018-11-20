@@ -2,20 +2,25 @@ package com.example.ensim.snowtam;
 
 import android.content.Context;
 import android.content.Intent;
-import android.opengl.Visibility;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import java.util.ArrayList;
 
+import Model.ListAirportLocation;
+
 public class Accueil extends AppCompatActivity {
+
+    final ArrayList<Airport> listAirport = new ArrayList<Airport>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,7 @@ public class Accueil extends AppCompatActivity {
         sup3.setVisibility(View.GONE);
         sup4.setVisibility(View.GONE);
 
-        final ArrayList<String> airports = new ArrayList<String>();
-
+        final ArrayList<String> airportsCode = new ArrayList<String>();
 
 
         addChamps.setOnClickListener(new View.OnClickListener() {
@@ -87,35 +91,67 @@ public class Accueil extends AppCompatActivity {
 
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                airports.clear();
+                airportsCode.clear();
 
                 if(champs1.getText().toString()!=""){
-                    airports.add(champs1.getText().toString());
+                    airportsCode.add(champs1.getText().toString());
                 }
                 if (champs2.getVisibility() == View.VISIBLE) {
-                    airports.add(champs2.getText().toString());
+                    airportsCode.add(champs2.getText().toString());
                 }
                 if (champs3.getVisibility() == View.VISIBLE) {
-                    airports.add(champs3.getText().toString());
+                    airportsCode.add(champs3.getText().toString());
                 }
                 if (champs4.getVisibility() == View.VISIBLE) {
-                    airports.add(champs4.getText().toString());
+                    airportsCode.add(champs4.getText().toString());
                 }
 
+
+                //requete a l'api
+
+                for (String codeICAO:airportsCode) {
+
+                    final Airport ap=new Airport();
+
+                    Response.Listener<ListAirportLocation> responseListener = new Response.Listener<ListAirportLocation>() {
+                        @Override
+                        public void onResponse(ListAirportLocation response) {
+                            ap.setLatitude(response.getData().get(0).getLatitude());
+                            ap.setLongitude(response.getData().get(0).getLongitude());
+                            ap.setName(response.getData().get(0).getAirport_name());
+                            listAirport.add(ap);
+                        }
+                    };
+                    Response.ErrorListener errorListener = new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("Airporterreur", error.toString());
+                        }
+                    };
+                    APIService.INSTANCE.searchLocation(codeICAO, responseListener, errorListener, v.getContext());
+
+                }
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
 
                 boolean OK=true;
                 int i;
+
                 //on verifie ici que les champs visibles sont remplis
-                for(i=0; i<airports.size(); i++){
-                    if(airports.get(i).length()==0)OK=false;
+
+                //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
+                for(i=0; i<airportsCode.size(); i++){
+                    if(airportsCode.get(i).length()==0)OK=false;
                 }
 
                 if (OK) {
+
                     Intent intent = new Intent(Accueil.this, Results.class);
-                    intent.putExtra("airports", airports);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("airports",listAirport);
+                    intent.putExtras(bundle);
                     champs1.setText("");
                     champs2.setText("");
                     champs3.setText("");

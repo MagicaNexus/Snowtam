@@ -1,19 +1,15 @@
 package com.example.ensim.snowtam;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -23,6 +19,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
     int nbAirport = 4;
     final double[][] LocationAirports = {{56.56,58.23},{0,0},{lon,lat},{2.2556262662,58.258741}};
     private GoogleMap mMap;
+    private ArrayList<Airport> listAirport = new ArrayList<Airport>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +31,34 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
         ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
 
+        Intent intent = getIntent();
+        if (intent != null){
+            listAirport = intent.getParcelableArrayListExtra("airports");
+        }
+
+        for(int i=0;i<listAirport.size();i++){
+            Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
+            Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
+            Log.d("AirportName", "Name = " + listAirport.get(i).getName());
+        }
 
 
 
-        Log.d("Nombre d'aeroports : ", String.valueOf(LocationAirports));
+
+        /*
+        !!!!!!!!!!!********Pour monsieur Matthieu RODE********!!!!!!!!!!!!!!!!!!!!
+        listAirport correspond a une liste qui contient les aeroports entrés dans la premiere page
+        si tu veux la longitude du premier aeroport de la liste tu fais:
+        listAirport.get(0).getLongitude()
+        et latitude:
+        listAirport.get(0).getLatitude()
+        Et si tu veux son nom tu fais:
+        listAirport.get(0).getName()
+        */
+
+
+
+        Log.d("Nombre d'aeroports : ", String.valueOf(listAirport.size()));
 
         if(nbAirport == 1)
         {
@@ -78,8 +99,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", LocationAirports[0][0]);
-                i.putExtra("latitude", LocationAirports[0][1]);
+                i.putExtra("longitude", listAirport.get(0).getLongitude());
+                i.putExtra("latitude", listAirport.get(0).getLatitude());
                 startActivity(i);
             }
         });
@@ -89,8 +110,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 //A recuperer de l'API
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", LocationAirports[1][0]);
-                i.putExtra("latitude", LocationAirports[1][1]);
+                i.putExtra("longitude", listAirport.get(1).getLongitude());
+                i.putExtra("latitude", listAirport.get(1).getLatitude());
                 startActivity(i);
             }
         });
@@ -99,8 +120,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", LocationAirports[2][0]);
-                i.putExtra("latitude", LocationAirports[2][1]);
+                i.putExtra("longitude", listAirport.get(2).getLongitude());
+                i.putExtra("latitude", listAirport.get(2).getLatitude());
                 startActivity(i);
             }
         });
@@ -109,8 +130,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", LocationAirports[3][0]);
-                i.putExtra("latitude", LocationAirports[3][1]);
+                i.putExtra("longitude", listAirport.get(3).getLongitude());
+                i.putExtra("latitude", listAirport.get(3).getLatitude());
                 startActivity(i);
             }
         });
