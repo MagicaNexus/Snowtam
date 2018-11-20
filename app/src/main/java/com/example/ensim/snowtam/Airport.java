@@ -63,6 +63,7 @@ public class Airport implements Parcelable{
         latitude = in.readDouble();
         longitude = in.readDouble();
         snowtam = in.readString();
+        name = in.readString();
     }
 
     public static final Creator<Airport> CREATOR = new Creator<Airport>() {
@@ -87,6 +88,7 @@ public class Airport implements Parcelable{
         parcel.writeDouble(latitude);
         parcel.writeDouble(longitude);
         parcel.writeString(snowtam);
+        parcel.writeString(name);
     }
 
 
