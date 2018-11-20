@@ -2,16 +2,21 @@ package com.example.ensim.snowtam;
 
 import android.content.Context;
 import android.content.Intent;
-import android.opengl.Visibility;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
@@ -103,12 +108,44 @@ public class Accueil extends AppCompatActivity {
                 }
 
 
+                //requete a l'api
+                // Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(v.getContext());
+                String url ="hhttps://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/airports/weather/current-conditions-list?" +
+                        "api_key=c2ff65c0-ec95-11e8-acf9-1d6bfa3c323d&airports="+"ENBR"+"&states=&format=json";
+
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                               // mTextView.setText("Response is: "+ response.substring(0,500));
+                                Log.d("AIRPORTSSSSSS", String.valueOf(response));
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //mTextView.setText("That didn't work!");
+                    }
+                });
+
+                // Add the request to the RequestQueue.
+                queue.add(stringRequest);
+
+
+
+
+
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
 
                 boolean OK=true;
                 int i;
+
                 //on verifie ici que les champs visibles sont remplis
+
+                //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
                 for(i=0; i<airports.size(); i++){
                     if(airports.get(i).length()==0)OK=false;
                 }
