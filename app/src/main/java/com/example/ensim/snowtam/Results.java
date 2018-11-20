@@ -21,6 +21,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
     double lat = 60.29361111111111;
     double lon = 5.218055555555556;
     int nbAirport = 4;
+    final double[][] LocationAirports = {{56.56,58.23},{0,0},{lon,lat},{2.2556262662,58.258741}};
     private GoogleMap mMap;
 
     @Override
@@ -35,7 +36,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
-        final double[][] LocationAirports = {{56.56,58.23},{0,0},{lon,lat},{2.2556262662,58.258741}};
+
         Log.d("Nombre d'aeroports : ", String.valueOf(LocationAirports));
 
         if(nbAirport == 1)
@@ -124,20 +125,15 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         mMap = map;
 
         // Add a marker in Sydney and move the camera
-        /*LatLng airport0 = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
-        // Add a marker in Sydney and move the camera
-        LatLng airport1 = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
-        // Add a marker in Sydney and move the camera
-        LatLng airport2 = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
-        // Add a marker in Sydney and move the camera
-        LatLng airport3 = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));*/
+        ArrayList<LatLng> airport = new ArrayList<>();
+        for(int j=0;j<nbAirport;j++)
+        {
+            airport.add(new LatLng(LocationAirports[j][0],LocationAirports[j][1]));
+            mMap.addMarker(new MarkerOptions().position(airport.get(j)).title("Marker in Sydney"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(airport.get(j)));
+        }
+
+
+
     }
 }
