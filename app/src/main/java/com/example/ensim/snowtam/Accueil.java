@@ -11,16 +11,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import Model.ListAirportLocation;
+
 public class Accueil extends AppCompatActivity {
+
+    final ArrayList<Airport> listAirport = new ArrayList<Airport>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,7 @@ public class Accueil extends AppCompatActivity {
         sup3.setVisibility(View.GONE);
         sup4.setVisibility(View.GONE);
 
-        final ArrayList<String> airports = new ArrayList<String>();
-
+        final ArrayList<String> airportsCode = new ArrayList<String>();
 
 
         addChamps.setOnClickListener(new View.OnClickListener() {
@@ -92,50 +91,47 @@ public class Accueil extends AppCompatActivity {
 
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                airports.clear();
+                airportsCode.clear();
 
                 if(champs1.getText().toString()!=""){
-                    airports.add(champs1.getText().toString());
+                    airportsCode.add(champs1.getText().toString());
                 }
                 if (champs2.getVisibility() == View.VISIBLE) {
-                    airports.add(champs2.getText().toString());
+                    airportsCode.add(champs2.getText().toString());
                 }
                 if (champs3.getVisibility() == View.VISIBLE) {
-                    airports.add(champs3.getText().toString());
+                    airportsCode.add(champs3.getText().toString());
                 }
                 if (champs4.getVisibility() == View.VISIBLE) {
-                    airports.add(champs4.getText().toString());
+                    airportsCode.add(champs4.getText().toString());
                 }
 
 
                 //requete a l'api
-                // Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(v.getContext());
-                String url ="hhttps://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/airports/weather/current-conditions-list?" +
-                        "api_key=c2ff65c0-ec95-11e8-acf9-1d6bfa3c323d&airports="+"ENBR"+"&states=&format=json";
 
-                // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                               // mTextView.setText("Response is: "+ response.substring(0,500));
-                                Log.d("AIRPORTSSSSSS", String.valueOf(response));
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //mTextView.setText("That didn't work!");
-                    }
-                });
+                for (String codeICAO:airportsCode) {
 
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
+                    final Airport ap=new Airport();
 
+                    Response.Listener<ListAirportLocation> responseListener = new Response.Listener<ListAirportLocation>() {
+                        @Override
+                        public void onResponse(ListAirportLocation response) {
+                            ap.setLatitude(response.getData().get(0).getLatitude());
+                            ap.setLongitude(response.getData().get(0).getLongitude());
+                            ap.setName(response.getData().get(0).getAirport_name());
+                            listAirport.add(ap);
+                        }
+                    };
+                    Response.ErrorListener errorListener = new Response.ErrorListener() {
 
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("Airporterreur", error.toString());
+                        }
+                    };
+                    APIService.INSTANCE.searchLocation(codeICAO, responseListener, errorListener, v.getContext());
 
-
+                }
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
@@ -146,13 +142,16 @@ public class Accueil extends AppCompatActivity {
                 //on verifie ici que les champs visibles sont remplis
 
                 //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
-                for(i=0; i<airports.size(); i++){
-                    if(airports.get(i).length()==0)OK=false;
+                for(i=0; i<airportsCode.size(); i++){
+                    if(airportsCode.get(i).length()==0)OK=false;
                 }
 
                 if (OK) {
+
                     Intent intent = new Intent(Accueil.this, Results.class);
-                    intent.putExtra("airports", airports);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("airports",listAirport);
+                    intent.putExtras(bundle);
                     champs1.setText("");
                     champs2.setText("");
                     champs3.setText("");
