@@ -21,6 +21,8 @@ import Model.ListAirportLocation;
 public class Accueil extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
+    boolean OK=true;
+    int j=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,7 @@ public class Accueil extends AppCompatActivity {
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 airportsCode.clear();
+                listAirport.clear();
 
                 if(champs1.getText().toString()!=""){
                     airportsCode.add(champs1.getText().toString());
@@ -109,8 +112,21 @@ public class Accueil extends AppCompatActivity {
 
                 //requete a l'api
 
+
+
+                int i;
+
+                //on verifie ici que les champs visibles sont remplis
+
+                //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
+                for(i=0; i<airportsCode.size(); i++){
+                    if(airportsCode.get(i).length()==0)OK=false;
+                }
+
+
                 for (String codeICAO:airportsCode) {
 
+                    j++;
                     final Airport ap=new Airport();
 
                     Response.Listener<ListAirportLocation> responseListener = new Response.Listener<ListAirportLocation>() {
@@ -120,6 +136,25 @@ public class Accueil extends AppCompatActivity {
                             ap.setLongitude(response.getData().get(0).getLongitude());
                             ap.setName(response.getData().get(0).getAirport_name());
                             listAirport.add(ap);
+
+                            if(j>=airportsCode.size()){
+
+
+                                if (OK) {
+                                    Log.d("Airportsize", String.valueOf(listAirport.size()));
+
+                                    Intent intent = new Intent(Accueil.this, Results.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putParcelableArrayList("airports",listAirport);
+                                    intent.putExtras(bundle);
+                                    champs1.setText("");
+                                    champs2.setText("");
+                                    champs3.setText("");
+                                    champs4.setText("");
+
+                                    startActivity(intent);
+                                }
+                            }
 
                         }
                     };
@@ -137,32 +172,10 @@ public class Accueil extends AppCompatActivity {
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
 
-                boolean OK=true;
-                int i;
-
-                //on verifie ici que les champs visibles sont remplis
-
-                //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
-                for(i=0; i<airportsCode.size(); i++){
-                    if(airportsCode.get(i).length()==0)OK=false;
-                }
 
 
-                if (OK) {
-                    Log.d("Airportsize", String.valueOf(listAirport.size()));
 
-                    Intent intent = new Intent(Accueil.this, Results.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList("airports",listAirport);
-                    intent.putExtras(bundle);
-                    champs1.setText("");
-                    champs2.setText("");
-                    champs3.setText("");
-                    champs4.setText("");
-
-                    startActivity(intent);
-                }
-                else{
+                if(!OK){
                     Toast.makeText(context, "Vous devez remplir les champs", duration).show();
                 }
 

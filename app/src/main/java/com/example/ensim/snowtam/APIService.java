@@ -8,7 +8,7 @@ import com.android.volley.toolbox.Volley;
 
 import Model.ListAirportLocation;
 
-enum APIService {
+public enum APIService {
     INSTANCE;
 
     public void searchLocation(String AirportCode, Response.Listener responseListener, Response.ErrorListener errorListener, Context context){
