@@ -6,6 +6,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
@@ -20,7 +22,6 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
     private int index;
     private ArrayList<Airport> listAirport;
     private GestureDetectorCompat gestureDetectorCompat = null;
-    private TextView textView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +59,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         if(index < listAirport.size()-1)
         {
             index++;
-            Intent i = new Intent(MainAirport.this, MainAirport.class);
-            i.putExtra("index", index);
-            i.putExtra("listAirport", listAirport);
-            startActivity(i);
+            onClick(index, MainAirport.class);
         }
     }
 
@@ -71,10 +69,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         if(index > 0)
         {
             index--;
-            Intent i = new Intent(MainAirport.this, MainAirport.class);
-            i.putExtra("index", index);
-            i.putExtra("listAirport", listAirport);
-            startActivity(i);
+            onClick(index, MainAirport.class);
         }
     }
 
@@ -94,10 +89,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(MainAirport.this, MapsActivity.class);
-                i.putExtra("index", index);
-                i.putExtra("listAirport", listAirport);
-                startActivity(i);
+                onClick(index, MapsActivity.class);
             }
         });
 
@@ -110,5 +102,14 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         gestureDetectorCompat.onTouchEvent(event);
         // Return true to tell android OS that event has been consumed, do not pass it to other event listeners.
         return true;
+    }
+
+    public void onClick(int num, Class activity)
+    {
+        Intent i = new Intent(MainAirport.this, activity);
+        i.putExtra("index", num);
+        i.putExtra("listAirport", listAirport);
+        startActivity(i);
+        finish();
     }
 }

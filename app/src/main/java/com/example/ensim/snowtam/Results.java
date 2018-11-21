@@ -22,8 +22,12 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ArrayList<Airport> listAirport = new ArrayList<>();
     private ArrayList<TextView> airportName = new ArrayList<>();
-    private ArrayList<TextView> GPS = new ArrayList<>();
+    private ArrayList<TextView> Longitude = new ArrayList<>();
+    private ArrayList<TextView> Latitude = new ArrayList<>();
     private ArrayList<TextView> ICAOcode = new ArrayList<>();
+    private ArrayList<ConstraintLayout> cl = new ArrayList<>();
+    private int visible = View.VISIBLE;
+    private int invisible = View.INVISIBLE;
 
 
 
@@ -32,10 +36,16 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        ConstraintLayout v0 = findViewById(R.id.constraintLayout0);
-        ConstraintLayout v1 = findViewById(R.id.constraintLayout1);
-        ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
-        ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
+        final ConstraintLayout v0 = findViewById(R.id.constraintLayout0);
+        final ConstraintLayout v1 = findViewById(R.id.constraintLayout1);
+        final ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
+        final ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
+
+        cl.add(v0);
+        cl.add(v1);
+        cl.add(v2);
+        cl.add(v3);
+
 
         /*Intent intent = getIntent();
         if (intent != null){
@@ -43,7 +53,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         }*/
 
         //Données dures
-        listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Paris"));
+        listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
         listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
@@ -54,57 +64,57 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         final TextView airportName1 = this.findViewById(R.id.airportName1);
         final TextView airportName2 = this.findViewById(R.id.airportname2);
         final TextView airportName3 = this.findViewById(R.id.airportname3);
-        final TextView GPS0= this.findViewById(R.id.GPSLocation0);
-        final TextView GPS1 = this.findViewById(R.id.GPSLocation1);
-        final TextView GPS2 = this.findViewById(R.id.GPSLocation2);
-        final TextView GPS3 = this.findViewById(R.id.GPSLocation3);
-        final TextView MAJTime0 = this.findViewById(R.id.updateTime0);
-        final TextView MAJTime1 = this.findViewById(R.id.updateTime1);
-        final TextView MAJTime2 = this.findViewById(R.id.updateTime2);
-        final TextView MAJTime3 = this.findViewById(R.id.updateTime3);
+        final TextView Longitude0= this.findViewById(R.id.longitude0);
+        final TextView Longitude1 = this.findViewById(R.id.longitude1);
+        final TextView Longitude2 = this.findViewById(R.id.longitude2);
+        final TextView Longitude3 = this.findViewById(R.id.longitude3);
+        final TextView Latitude0= this.findViewById(R.id.latitude0);
+        final TextView Latitude1 = this.findViewById(R.id.latitude1);
+        final TextView Latitude2 = this.findViewById(R.id.latitude2);
+        final TextView Latitude3 = this.findViewById(R.id.latitude3);
 
         airportName.add(airportName0);
         airportName.add(airportName1);
         airportName.add(airportName2);
         airportName.add(airportName3);
-        GPS.add(GPS0);
-        GPS.add(GPS1);
-        GPS.add(GPS2);
-        GPS.add(GPS3);
-        ICAOcode.add(MAJTime0);
-        ICAOcode.add(MAJTime1);
-        ICAOcode.add(MAJTime2);
-        ICAOcode.add(MAJTime3);
+        Longitude.add(Longitude0);
+        Longitude.add(Longitude1);
+        Longitude.add(Longitude2);
+        Longitude.add(Longitude3);
+        Latitude.add(Latitude0);
+        Latitude.add(Latitude1);
+        Latitude.add(Latitude2);
+        Latitude.add(Latitude3);
 
 
         if(listAirport.size() == 1)
         {
-            v1.setVisibility(View.INVISIBLE);
-            v2.setVisibility(View.INVISIBLE);
-            v3.setVisibility(View.INVISIBLE);
+            v1.setVisibility(invisible);
+            v2.setVisibility(invisible);
+            v3.setVisibility(invisible);
         }
 
         if(listAirport.size() == 2)
         {
 
-            v1.setVisibility(View.VISIBLE);
-            v2.setVisibility(View.INVISIBLE);
-            v3.setVisibility(View.INVISIBLE);
+            v1.setVisibility(visible);
+            v2.setVisibility(invisible);
+            v3.setVisibility(invisible);
         }
 
         if(listAirport.size() == 3)
         {
 
-            v1.setVisibility(View.VISIBLE);
-            v2.setVisibility(View.VISIBLE);
-            v3.setVisibility(View.INVISIBLE);
+            v1.setVisibility(visible);
+            v2.setVisibility(visible);
+            v3.setVisibility(invisible);
         }
 
         if(listAirport.size() == 4)
         {
-            v1.setVisibility(View.VISIBLE);
-            v2.setVisibility(View.VISIBLE);
-            v3.setVisibility(View.VISIBLE);
+            v1.setVisibility(visible);
+            v2.setVisibility(visible);
+            v3.setVisibility(visible);
         }
 
         for(int i=0;i<listAirport.size();i++)
@@ -112,49 +122,36 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
             Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
             Log.d("AirportName", "Name = " + listAirport.get(i).getName());
-            airportName.get(i).setText(listAirport.get(i).getName());
-            GPS.get(i).setText(listAirport.get(i).getLatitude() + "/" + listAirport.get(0).getLongitude());
-            ICAOcode.get(i).setText(listAirport.get(i).getICAO_Code());
-
+            airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
+            Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
+            Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));
         }
 
         v0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("index", 0);
-                i.putExtra("listAirport", listAirport);
-                startActivity(i);
+                Results.this.onClick(0);
             }
         });
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("index", 1);
-                i.putExtra("listAirport", listAirport);
-                startActivity(i);
+                Results.this.onClick(1);
             }
         });
 
         v2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("index", 2);
-                i.putExtra("listAirport", listAirport);
-                startActivity(i);
+                Results.this.onClick(2);
             }
         });
 
         v3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("index", 3);
-                i.putExtra("listAirport", listAirport);
-                startActivity(i);
+                Results.this.onClick(3);
             }
         });
 
@@ -187,14 +184,22 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                     if(marker.getTitle().equals(listAirport.get(j).getName()))
                     {
                         Log.d("Marker :", marker.getTitle() + " =? " + listAirport.get(j).getName());
-                        Intent i = new Intent(Results.this, MainAirport.class);
-                        i.putExtra("index", j);
-                        i.putExtra("listAirport", listAirport);
-                        startActivity(i);
+                        Results.this.onClick(j);
                     }
 
                 }
             }
         });
     }
+
+    public void onClick(int num)
+    {
+        Intent i = new Intent(Results.this, MainAirport.class);
+        i.putExtra("index", num);
+        i.putExtra("listAirport", listAirport);
+        startActivity(i);
+    }
+
+
+
 }
