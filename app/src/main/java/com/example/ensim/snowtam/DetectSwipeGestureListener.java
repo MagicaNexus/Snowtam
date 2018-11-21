@@ -48,11 +48,13 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
             if(deltaX > 0)
             {
                 //LEFT SWIPE
-
+                this.activity.finish();
                 this.activity.onSwipeLeft();
 
             }else
             {
+                //Right Swipe
+                this.activity.finish();
                 this.activity.onSwipeRight();
             }
         }

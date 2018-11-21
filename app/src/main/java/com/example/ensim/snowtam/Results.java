@@ -37,16 +37,16 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
         ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         if (intent != null){
             listAirport = intent.getParcelableArrayListExtra("airports");
-        }
+        }*/
 
         //Données dures
-        /*listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Paris"));
+        listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Paris"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));*/
+        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
 
         //TEXTVIEWS
 
@@ -75,9 +75,6 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         ICAOcode.add(MAJTime1);
         ICAOcode.add(MAJTime2);
         ICAOcode.add(MAJTime3);
-
-
-
 
 
         if(listAirport.size() == 1)
