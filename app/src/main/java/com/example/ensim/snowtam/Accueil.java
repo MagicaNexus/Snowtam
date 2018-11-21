@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import java.util.ArrayList;
 
 import Model.ListAirportLocation;
+import Model.ListAirportSnowtam;
 
 public class Accueil extends AppCompatActivity {
 
@@ -92,7 +93,7 @@ public class Accueil extends AppCompatActivity {
 
 
         valide.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 airportsCode.clear();
                 listAirport.clear();
 
@@ -124,48 +125,65 @@ public class Accueil extends AppCompatActivity {
                 }
 
 
-                for (String codeICAO:airportsCode) {
+                for (final String codeICAO:airportsCode) {
 
                     j++;
                     final Airport ap=new Airport();
 
-                    Response.Listener<ListAirportLocation> responseListener = new Response.Listener<ListAirportLocation>() {
+
+                    Response.Listener<ListAirportSnowtam> responseListener = new Response.Listener<ListAirportSnowtam>() {
                         @Override
-                        public void onResponse(ListAirportLocation response) {
-                            ap.setLatitude(response.getData().get(0).getLatitude());
-                            ap.setLongitude(response.getData().get(0).getLongitude());
-                            ap.setName(response.getData().get(0).getAirport_name());
-                            listAirport.add(ap);
+                        public void onResponse(ListAirportSnowtam response) {
+                            //Log.d("AirportSnowtam",response.getData().get(0).getAll());
+                            ap.setSnowtam(response.getData().get(0).getAll());
 
-                            if(j>=airportsCode.size()){
+                            Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
+                                @Override
+                                public void onResponse(ListAirportLocation response) {
+                                    ap.setLatitude(response.getData().get(0).getLatitude());
+                                    ap.setLongitude(response.getData().get(0).getLongitude());
+                                    ap.setName(response.getData().get(0).getAirport_name());
+                                    listAirport.add(ap);
+
+                                    if(j>=airportsCode.size()){
 
 
-                                if (OK) {
-                                    Log.d("Airportsize", String.valueOf(listAirport.size()));
+                                        if (OK) {
+                                            Log.d("Airportsize", String.valueOf(listAirport.size()));
 
-                                    Intent intent = new Intent(Accueil.this, Results.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putParcelableArrayList("airports",listAirport);
-                                    intent.putExtras(bundle);
-                                    champs1.setText("");
-                                    champs2.setText("");
-                                    champs3.setText("");
-                                    champs4.setText("");
+                                            Intent intent = new Intent(Accueil.this, Results.class);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putParcelableArrayList("airports",listAirport);
+                                            intent.putExtras(bundle);
+                                            champs1.setText("");
+                                            champs2.setText("");
+                                            champs3.setText("");
+                                            champs4.setText("");
 
-                                    startActivity(intent);
+                                            startActivity(intent);
+                                        }
+                                    }
+
                                 }
-                            }
+                            };
+                            Response.ErrorListener errorListener2 = new Response.ErrorListener() {
 
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("Airporterreur", error.toString());
+                                }
+                            };
+                            APIService.INSTANCE.searchLocation(codeICAO, responseListener2, errorListener2, v.getContext());
                         }
                     };
-                    Response.ErrorListener errorListener = new Response.ErrorListener() {
-
+                    Response.ErrorListener errorListener=new Response.ErrorListener(){
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.d("Airporterreur", error.toString());
+                            Log.d("SnowtamErreur","VolleyError");
                         }
                     };
-                    APIService.INSTANCE.searchLocation(codeICAO, responseListener, errorListener, v.getContext());
+                    APIService.INSTANCE.searchAirportSnowtam(codeICAO, responseListener, errorListener,v.getContext());
+
 
                 }
 

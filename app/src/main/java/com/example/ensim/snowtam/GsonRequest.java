@@ -51,7 +51,7 @@ public class GsonRequest<T> extends Request<T> {
             String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
 
             for (String s:json.split("id")) {
-                Log.d(TAG,s);
+                //Log.d(TAG,s);
             }
 
             return Response.success(gson.fromJson("{\"data\":"+json+"}", clazz),HttpHeaderParser.parseCacheHeaders(response));
