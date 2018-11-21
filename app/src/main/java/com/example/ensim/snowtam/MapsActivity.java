@@ -15,12 +15,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private double longi;
     private double lati;
+    private String airportName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lati = getIntent().getDoubleExtra("latitude", 0);
         longi = getIntent().getDoubleExtra("longitude",0);
+        airportName = getIntent().getStringExtra("airportName");
 
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -45,8 +47,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng airport = new LatLng(lati, longi);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(airport).title(airportName));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
+        mMap.setMinZoomPreference(16.0f);
+        mMap.setMaxZoomPreference(15.0f);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
 
 

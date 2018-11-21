@@ -7,15 +7,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainAirport extends AppCompatActivity implements OnMapReadyCallback{
     private GoogleMap mMap;
-    private double lon, lat;
-    private String snowtam, nameAirport;
+    private int index;
+    private ArrayList<Airport> listAirport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +32,12 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         TextView longitude = findViewById(R.id.longitude);
         TextView latitude = findViewById(R.id.latitude);
 
-        lat = getIntent().getDoubleExtra("latitude", 0);
-        lon = getIntent().getDoubleExtra("longitude",0);
-        snowtam = getIntent().getStringExtra("snowtam");
-        nameAirport = getIntent().getStringExtra("airportName");
+        listAirport = getIntent().getParcelableArrayListExtra("listAirport");
+        index = getIntent().getIntExtra("index",0);
 
-        airportName.setText(nameAirport);
-        longitude.setText("" + lon);
-        latitude.setText("" + lat);
-
-
+        airportName.setText(listAirport.get(index).getName());
+        longitude.setText("" + listAirport.get(index).getLongitude());
+        latitude.setText("" + listAirport.get(index).getLatitude());
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
         mapFragment.getMapAsync(this);
@@ -46,18 +48,63 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         mMap = map;
 
         // Add a marker in Sydney and move the camera
-        LatLng airport = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(airport).title("Marker in Sydney"));
+        final LatLng airport = new LatLng(listAirport.get(index).getLatitude(), listAirport.get(index).getLongitude());
+        mMap.addMarker(new MarkerOptions().position(airport).title(listAirport.get(index).getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
+        mMap.setMinZoomPreference(15.0f);
+        mMap.setMaxZoomPreference(16.0f);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 Intent i = new Intent(MainAirport.this, MapsActivity.class);
-                i.putExtra("longitude", lon);
-                i.putExtra("latitude", lat);
+                i.putExtra("index", index);
+                i.putExtra("listAirport", listAirport);
                 startActivity(i);
             }
         });
 
+    }
+
+    private final GestureDetector gestureDetector;
+
+    public MainAirport(Context context) {
+        gestureDetector = new GestureDetector(context, new GestureListener());
+    }
+
+    public void onSwipeLeft() {
+    }
+
+    public void onSwipeRight() {
+    }
+
+    public boolean onTouch(View v, MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+    }
+
+
+    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        private static final int SWIPE_DISTANCE_THRESHOLD = 100;
+        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            float distanceX = e2.getX() - e1.getX();
+            float distanceY = e2.getY() - e1.getY();
+            if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                if (distanceX > 0)
+                    onSwipeRight();
+                else
+                    onSwipeLeft();
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -34,21 +35,16 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
         ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         if (intent != null){
             listAirport = intent.getParcelableArrayListExtra("airports");
-        }
+        }/**/
 
         //Données dures
-      /*  listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris"));
-        listAirport.add(new Airport("HYML", 51.5085, -0.1257, "snowtam2", "Londres"));
+        listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Paris"));
+        listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
         listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
-        */
-        listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris", "date"));
-        listAirport.add(new Airport("HYML", 51.5085, -0.1257, "snowtam2", "Londres", "date"));
-        listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon", "date"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes", "date"));
 
       nbAirport=listAirport.size();
 
@@ -143,10 +139,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", listAirport.get(0).getLongitude());
-                i.putExtra("latitude", listAirport.get(0).getLatitude());
-                i.putExtra("airportName", listAirport.get(0).getName());
-                i.putExtra("snowtam", listAirport.get(0).getSnowtam());
+                i.putExtra("index", 0);
+                i.putExtra("listAirport", listAirport);
                 startActivity(i);
             }
         });
@@ -154,12 +148,9 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //A recuperer de l'API
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", listAirport.get(1).getLongitude());
-                i.putExtra("latitude", listAirport.get(1).getLatitude());
-                i.putExtra("airportName", listAirport.get(1).getName());
-                i.putExtra("snowtam", listAirport.get(1).getSnowtam());
+                i.putExtra("index", 1);
+                i.putExtra("listAirport", listAirport);
                 startActivity(i);
             }
         });
@@ -168,10 +159,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", listAirport.get(2).getLongitude());
-                i.putExtra("latitude", listAirport.get(2).getLatitude());
-                i.putExtra("airportName", listAirport.get(2).getName());
-                i.putExtra("snowtam", listAirport.get(2).getSnowtam());
+                i.putExtra("index", 2);
+                i.putExtra("listAirport", listAirport);
                 startActivity(i);
             }
         });
@@ -180,10 +169,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Results.this, MainAirport.class);
-                i.putExtra("longitude", listAirport.get(3).getLongitude());
-                i.putExtra("latitude", listAirport.get(3).getLatitude());
-                i.putExtra("airportName", listAirport.get(3).getName());
-                i.putExtra("snowtam", listAirport.get(3).getSnowtam());
+                i.putExtra("index", 3);
+                i.putExtra("listAirport", listAirport);
                 startActivity(i);
             }
         });
@@ -196,7 +183,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-        ArrayList<LatLng> airport = new ArrayList<>();
+        final ArrayList<LatLng> airport = new ArrayList<>();
         for(int j=0;j<nbAirport;j++)
         {
             airport.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
@@ -206,6 +193,32 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport.get(0)));
         mMap.setMinZoomPreference(5.0f);
         mMap.setMaxZoomPreference(15.0f);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                for(int j=0;j<nbAirport;j++){
+
+                    if(marker.getTitle().equals(listAirport.get(j).getName()))
+                    {
+                        Log.d("Marker :", marker.getTitle() + " =? " + listAirport.get(j).getName());
+                        Intent i = new Intent(Results.this, MainAirport.class);
+                        i.putExtra("index", j);
+                        i.putExtra("listAirport", listAirport);
+                        startActivity(i);
+                    }
+
+                }
+            }
+        });
+
+
+
+
+
+
 
     }
 }
