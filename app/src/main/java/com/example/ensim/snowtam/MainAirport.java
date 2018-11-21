@@ -32,42 +32,54 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         gestureListener.setActivity(this);
         gestureDetectorCompat = new GestureDetectorCompat(this, gestureListener);
 
-
-
-
-
+        /*TextView*/
         TextView airportName = findViewById(R.id.mainAirportName);
         TextView longitude = findViewById(R.id.longitude);
         TextView latitude = findViewById(R.id.latitude);
 
+        /*Get Intent*/
         listAirport = getIntent().getParcelableArrayListExtra("listAirport");
         index = getIntent().getIntExtra("index",0);
 
+        /*Set Text*/
         airportName.setText(listAirport.get(index).getName());
         longitude.setText("" + listAirport.get(index).getLongitude());
         latitude.setText("" + listAirport.get(index).getLatitude());
 
+        /*Fragment Map*/
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
         mapFragment.getMapAsync(this);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // Pass activity on touch event to the gesture detector.
-        gestureDetectorCompat.onTouchEvent(event);
-        // Return true to tell android OS that event has been consumed, do not pass it to other event listeners.
-        return true;
-    }
 
-    public void displayMessage(String message)
+    //Fonction pour savoir ce qu'on fait en cas de swipe gauche
+    public void onSwipeLeft()
     {
-        if(textView!=null)
+        if(index < listAirport.size()-1)
         {
-            // Display text in the text view.
-            textView.setText(message);
+            index++;
+            Intent i = new Intent(MainAirport.this, MainAirport.class);
+            i.putExtra("index", index);
+            i.putExtra("listAirport", listAirport);
+            startActivity(i);
         }
     }
 
+    //Fonction pour savoir ce qu'on fait en cas de swipe droit
+    public void onSwipeRight()
+    {
+        if(index > 0)
+        {
+            index--;
+            Intent i = new Intent(MainAirport.this, MainAirport.class);
+            i.putExtra("index", index);
+            i.putExtra("listAirport", listAirport);
+            startActivity(i);
+        }
+    }
+
+
+    //Fonction pour afficher la MAP
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
@@ -89,5 +101,14 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    //Fonction pour le reperage du swipe
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Pass activity on touch event to the gesture detector.
+        gestureDetectorCompat.onTouchEvent(event);
+        // Return true to tell android OS that event has been consumed, do not pass it to other event listeners.
+        return true;
     }
 }

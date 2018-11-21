@@ -19,9 +19,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 public class Results extends AppCompatActivity implements OnMapReadyCallback {
-    int nbAirport;
     private GoogleMap mMap;
     private ArrayList<Airport> listAirport = new ArrayList<>();
+    private ArrayList<TextView> airportName = new ArrayList<>();
+    private ArrayList<TextView> GPS = new ArrayList<>();
+    private ArrayList<TextView> ICAOcode = new ArrayList<>();
 
 
 
@@ -46,9 +48,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
         listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
 
-      nbAirport=listAirport.size();
-
         //TEXTVIEWS
+
         final TextView airportName0 = this.findViewById(R.id.airportname0);
         final TextView airportName1 = this.findViewById(R.id.airportName1);
         final TextView airportName2 = this.findViewById(R.id.airportname2);
@@ -62,78 +63,63 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         final TextView MAJTime2 = this.findViewById(R.id.updateTime2);
         final TextView MAJTime3 = this.findViewById(R.id.updateTime3);
 
-        for(int i=0;i<listAirport.size();i++){
-            Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
-            Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
-            Log.d("AirportName", "Name = " + listAirport.get(i).getName());
-        }
-        Log.d("Nombre d'aeroports : ", String.valueOf(listAirport.size()));
+        airportName.add(airportName0);
+        airportName.add(airportName1);
+        airportName.add(airportName2);
+        airportName.add(airportName3);
+        GPS.add(GPS0);
+        GPS.add(GPS1);
+        GPS.add(GPS2);
+        GPS.add(GPS3);
+        ICAOcode.add(MAJTime0);
+        ICAOcode.add(MAJTime1);
+        ICAOcode.add(MAJTime2);
+        ICAOcode.add(MAJTime3);
 
-        if(nbAirport == 1)
+
+
+
+
+        if(listAirport.size() == 1)
+        {
+            v1.setVisibility(View.INVISIBLE);
+            v2.setVisibility(View.INVISIBLE);
+            v3.setVisibility(View.INVISIBLE);
+        }
+
+        if(listAirport.size() == 2)
         {
 
-           v1.setVisibility(View.INVISIBLE);
-           v2.setVisibility(View.INVISIBLE);
-           v3.setVisibility(View.INVISIBLE);
-           airportName0.setText(listAirport.get(0).getName());
-           GPS0.setText(listAirport.get(0).getLatitude() + "/" + listAirport.get(0).getLongitude());
-           MAJTime0.setText(listAirport.get(0).getICAO_Code());
-        }
-
-        if(nbAirport == 2)
-        {
-            airportName0.setText(listAirport.get(0).getName());
-            airportName1.setText(listAirport.get(1).getName());
-            GPS0.setText(listAirport.get(0).getLatitude() + "/" + listAirport.get(0).getLongitude());
-            GPS1.setText(listAirport.get(1).getLatitude() + "/" + listAirport.get(1).getLongitude());
-            MAJTime0.setText(listAirport.get(0).getICAO_Code());
-            MAJTime1.setText(listAirport.get(1).getICAO_Code());
             v1.setVisibility(View.VISIBLE);
             v2.setVisibility(View.INVISIBLE);
             v3.setVisibility(View.INVISIBLE);
         }
 
-        if(nbAirport == 3)
+        if(listAirport.size() == 3)
         {
-            airportName0.setText(listAirport.get(0).getName());
-            airportName1.setText(listAirport.get(1).getName());
-            airportName2.setText(listAirport.get(2).getName());
-            GPS0.setText(listAirport.get(0).getLatitude() + "/" + listAirport.get(0).getLongitude());
-            GPS1.setText(listAirport.get(1).getLatitude() + "/" + listAirport.get(1).getLongitude());
-            GPS2.setText(listAirport.get(2).getLatitude() + "/" + listAirport.get(2).getLongitude());
-            MAJTime0.setText(listAirport.get(0).getICAO_Code());
-            MAJTime1.setText(listAirport.get(1).getICAO_Code());
-            MAJTime2.setText(listAirport.get(2).getICAO_Code());
+
             v1.setVisibility(View.VISIBLE);
             v2.setVisibility(View.VISIBLE);
             v3.setVisibility(View.INVISIBLE);
         }
 
-        if(nbAirport == 4)
+        if(listAirport.size() == 4)
         {
-            airportName0.setText(listAirport.get(0).getName());
-            airportName1.setText(listAirport.get(1).getName());
-            airportName2.setText(listAirport.get(2).getName());
-            airportName3.setText(listAirport.get(3).getName());
-            GPS0.setText(listAirport.get(0).getLatitude() + "/" + listAirport.get(0).getLongitude());
-            GPS1.setText(listAirport.get(1).getLatitude() + "/" + listAirport.get(1).getLongitude());
-            GPS2.setText(listAirport.get(2).getLatitude() + "/" + listAirport.get(2).getLongitude());
-            GPS3.setText(listAirport.get(3).getLatitude() + "/" + listAirport.get(3).getLongitude());
-            MAJTime0.setText(listAirport.get(0).getICAO_Code());
-            MAJTime1.setText(listAirport.get(1).getICAO_Code());
-            MAJTime2.setText(listAirport.get(2).getICAO_Code());
-            MAJTime3.setText(listAirport.get(3).getICAO_Code());
             v1.setVisibility(View.VISIBLE);
             v2.setVisibility(View.VISIBLE);
             v3.setVisibility(View.VISIBLE);
         }
-        //Tableau contenant tous les aeroports
-        //final ArrayList<String> airports = getIntent().getStringArrayListExtra("airports");
-        //int numberAirport = airports.size(); //Contient le nombre d'aeroport
-        //Log.d("Nombre d'aeroports : ", String.valueOf(numberAirport));
-        //Log.d("Nom des aeroports", String.valueOf(airports));
 
+        for(int i=0;i<listAirport.size();i++)
+        {
+            Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
+            Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
+            Log.d("AirportName", "Name = " + listAirport.get(i).getName());
+            airportName.get(i).setText(listAirport.get(i).getName());
+            GPS.get(i).setText(listAirport.get(i).getLatitude() + "/" + listAirport.get(0).getLongitude());
+            ICAOcode.get(i).setText(listAirport.get(i).getICAO_Code());
 
+        }
 
         v0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +170,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap map) {
         mMap = map;
         final ArrayList<LatLng> airport = new ArrayList<>();
-        for(int j=0;j<nbAirport;j++)
+        for(int j=0;j<listAirport.size();j++)
         {
             airport.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
             mMap.addMarker(new MarkerOptions().position(airport.get(j)).title(listAirport.get(j).getName()));
@@ -199,7 +185,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onInfoWindowClick(Marker marker) {
 
-                for(int j=0;j<nbAirport;j++){
+                for(int j=0;j<listAirport.size();j++){
 
                     if(marker.getTitle().equals(listAirport.get(j).getName()))
                     {
@@ -213,12 +199,5 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
         });
-
-
-
-
-
-
-
     }
 }

@@ -47,39 +47,15 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
         {
             if(deltaX > 0)
             {
-                this.activity.displayMessage("Swipe to left");
+                //LEFT SWIPE
+
+                this.activity.onSwipeLeft();
+
             }else
             {
-                this.activity.displayMessage("Swipe to right");
+                this.activity.onSwipeRight();
             }
         }
-
-        if((deltaYAbs >= MIN_SWIPE_DISTANCE_Y) && (deltaYAbs <= MAX_SWIPE_DISTANCE_Y))
-        {
-            if(deltaY > 0)
-            {
-                this.activity.displayMessage("Swipe to up");
-            }else
-            {
-                this.activity.displayMessage("Swipe to down");
-            }
-        }
-
-
-        return true;
-    }
-
-    // Invoked when single tap screen.
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        this.activity.displayMessage("Single tap occurred.");
-        return true;
-    }
-
-    // Invoked when double tap screen.
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-        this.activity.displayMessage("Double tap occurred.");
         return true;
     }
 }
