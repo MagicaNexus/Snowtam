@@ -6,7 +6,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,13 +13,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
 public class Results extends AppCompatActivity implements OnMapReadyCallback {
-    int nbAirport = 2;
+    int nbAirport;
     private GoogleMap mMap;
     private ArrayList<Airport> listAirport = new ArrayList<>();
 
@@ -36,16 +34,19 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
         ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
 
-        /*Intent intent = getIntent();
+        Intent intent = getIntent();
         if (intent != null){
             listAirport = intent.getParcelableArrayListExtra("airports");
-        }*/
+        }
 
         //Données dures
-        listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris"));
+      /*  listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris"));
         listAirport.add(new Airport("HYML", 51.5085, -0.1257, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
         listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
+        */
+
+      nbAirport=listAirport.size();
 
         //TEXTVIEWS
         final TextView airportName0 = this.findViewById(R.id.airportname0);
