@@ -15,14 +15,27 @@ import android.widget.TextView;
 public class MainAirport extends AppCompatActivity implements OnMapReadyCallback{
     private GoogleMap mMap;
     private double lon, lat;
+    private String snowtam, nameAirport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_airport);
-        TextView airportName = findViewById(R.id.textViewName);
+
+        TextView airportName = findViewById(R.id.mainAirportName);
+        TextView longitude = findViewById(R.id.longitude);
+        TextView latitude = findViewById(R.id.latitude);
+
         lat = getIntent().getDoubleExtra("latitude", 0);
         lon = getIntent().getDoubleExtra("longitude",0);
+        snowtam = getIntent().getStringExtra("snowtam");
+        nameAirport = getIntent().getStringExtra("airportName");
+
+        airportName.setText(nameAirport);
+        longitude.setText("" + lon);
+        latitude.setText("" + lat);
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
         mapFragment.getMapAsync(this);

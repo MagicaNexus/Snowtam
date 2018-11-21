@@ -42,10 +42,10 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         }*/
 
         //Données dures
-        listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris"));
-        listAirport.add(new Airport("HYML", 51.5085, -0.1257, "snowtam2", "Londres"));
-        listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
+        listAirport.add(new Airport("FEML", 48.8534, 2.3488, "snowtam", "Paris", "date"));
+        listAirport.add(new Airport("HYML", 51.5085, -0.1257, "snowtam2", "Londres", "date"));
+        listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon", "date"));
+        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes", "date"));
 
         //TEXTVIEWS
         final TextView airportName0 = this.findViewById(R.id.airportname0);
@@ -60,11 +60,6 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         final TextView MAJTime1 = this.findViewById(R.id.updateTime1);
         final TextView MAJTime2 = this.findViewById(R.id.updateTime2);
         final TextView MAJTime3 = this.findViewById(R.id.updateTime3);
-
-
-
-
-
 
         for(int i=0;i<listAirport.size();i++){
             Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
@@ -145,6 +140,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                 Intent i = new Intent(Results.this, MainAirport.class);
                 i.putExtra("longitude", listAirport.get(0).getLongitude());
                 i.putExtra("latitude", listAirport.get(0).getLatitude());
+                i.putExtra("airportName", listAirport.get(0).getName());
+                i.putExtra("snowtam", listAirport.get(0).getSnowtam());
                 startActivity(i);
             }
         });
@@ -156,6 +153,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                 Intent i = new Intent(Results.this, MainAirport.class);
                 i.putExtra("longitude", listAirport.get(1).getLongitude());
                 i.putExtra("latitude", listAirport.get(1).getLatitude());
+                i.putExtra("airportName", listAirport.get(1).getName());
+                i.putExtra("snowtam", listAirport.get(1).getSnowtam());
                 startActivity(i);
             }
         });
@@ -166,6 +165,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                 Intent i = new Intent(Results.this, MainAirport.class);
                 i.putExtra("longitude", listAirport.get(2).getLongitude());
                 i.putExtra("latitude", listAirport.get(2).getLatitude());
+                i.putExtra("airportName", listAirport.get(2).getName());
+                i.putExtra("snowtam", listAirport.get(2).getSnowtam());
                 startActivity(i);
             }
         });
@@ -176,6 +177,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                 Intent i = new Intent(Results.this, MainAirport.class);
                 i.putExtra("longitude", listAirport.get(3).getLongitude());
                 i.putExtra("latitude", listAirport.get(3).getLatitude());
+                i.putExtra("airportName", listAirport.get(3).getName());
+                i.putExtra("snowtam", listAirport.get(3).getSnowtam());
                 startActivity(i);
             }
         });

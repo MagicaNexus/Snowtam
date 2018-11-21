@@ -9,16 +9,21 @@ public class Airport implements Parcelable{
     private double longitude;
     private String snowtam;
     private String name;
+    private String date;
 
     public Airport() {
     }
 
-    public Airport(String ICAO_Code, double latitude, double longitude, String snowtam, String name) {
+
+
+    public Airport(String ICAO_Code, double latitude, double longitude, String snowtam, String name, String date) {
         this.ICAO_Code = ICAO_Code;
         this.latitude = latitude;
         this.longitude = longitude;
         this.snowtam = snowtam;
         this.name=name;
+        this.date=date;
+
     }
 
 
@@ -53,6 +58,14 @@ public class Airport implements Parcelable{
 
     public void setSnowtam(String snowtam) {
         this.snowtam = snowtam;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 
