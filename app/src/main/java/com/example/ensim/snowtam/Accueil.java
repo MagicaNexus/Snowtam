@@ -23,7 +23,6 @@ public class Accueil extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
     boolean OK=true;
-    int j=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +126,6 @@ public class Accueil extends AppCompatActivity {
 
                 for (final String codeICAO:airportsCode) {
 
-                    j++;
                     final Airport ap=new Airport();
 
 
@@ -155,11 +153,10 @@ public class Accueil extends AppCompatActivity {
                                         listAirport.add(ap);
                                     }
 
-                                        if (j >= airportsCode.size()) {
+                                        if (listAirport.size() >= airportsCode.size()) {
 
 
                                             if (OK) {
-                                                Log.d("Airportsize", String.valueOf(listAirport.size()));
 
                                                 Intent intent = new Intent(Accueil.this, Results.class);
                                                 Bundle bundle = new Bundle();
@@ -172,6 +169,12 @@ public class Accueil extends AppCompatActivity {
 
                                                 if (listAirport.size()>0) {
                                                     startActivity(intent);
+                                                    champs2.setVisibility(View.GONE);
+                                                    champs3.setVisibility(View.GONE);
+                                                    champs4.setVisibility(View.GONE);
+                                                    sup2.setVisibility(View.GONE);
+                                                    sup3.setVisibility(View.GONE);
+                                                    sup4.setVisibility(View.GONE);
                                                 } else {
                                                     final Context context = getApplicationContext();
                                                     final int duration = Toast.LENGTH_SHORT;
@@ -196,7 +199,7 @@ public class Accueil extends AppCompatActivity {
                     Response.ErrorListener errorListener=new Response.ErrorListener(){
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.d("SnowtamErreur","VolleyError");
+                            Log.d("SnowtamErreur",error.toString());
                         }
                     };
                     APIService.INSTANCE.searchAirportSnowtam(codeICAO, responseListener, errorListener,v.getContext());
