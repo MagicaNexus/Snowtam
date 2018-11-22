@@ -150,6 +150,7 @@ public class Accueil extends AppCompatActivity {
                                         ap.setLatitude(response.getData().get(0).getLatitude());
                                         ap.setLongitude(response.getData().get(0).getLongitude());
                                         ap.setName(response.getData().get(0).getAirport_name());
+                                        ap.setICAO_Code(codeICAO);
                                         listAirport.add(ap);
                                     }
 
@@ -179,6 +180,8 @@ public class Accueil extends AppCompatActivity {
                                                     final Context context = getApplicationContext();
                                                     final int duration = Toast.LENGTH_SHORT;
                                                     Toast.makeText(context, "Code ICAO non valide", duration).show();
+
+                                                    //!!!!!!!!!!!!!!!!!!a revoir!!!!!!!!!!!!!!!!!!
                                                 }
 
                                             }
