@@ -53,7 +53,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         }
 
         //Données dures
-      /*  listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
+        /*listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
         listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));*/
@@ -122,6 +122,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
             Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
             Log.d("AirportName", "Name = " + listAirport.get(i).getName());
+            Log.d("AirportIcao", "ICAO = " + listAirport.get(i).getICAO_Code());
             airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
             Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
             Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));
