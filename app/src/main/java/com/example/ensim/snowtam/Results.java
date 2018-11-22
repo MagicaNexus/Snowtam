@@ -126,7 +126,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
             Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));
 
-            Log.d("AirportSnowtam",listAirport.get(i).getSnowtam());
+           // Log.d("AirportSnowtam",listAirport.get(i).getSnowtam());
 
         }
 
