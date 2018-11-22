@@ -134,8 +134,16 @@ public class Accueil extends AppCompatActivity {
                     Response.Listener<ListAirportSnowtam> responseListener = new Response.Listener<ListAirportSnowtam>() {
                         @Override
                         public void onResponse(ListAirportSnowtam response) {
-                            //Log.d("AirportSnowtam",response.getData().get(0).getAll());
-                            ap.setSnowtam(response.getData().get(0).getAll());
+
+                            //on prend le premier snowtam dans la liste, c'est a dire le dernier en date
+                            int k=0;
+                            while(ap.getSnowtam()==null && k<response.getData().size()){
+                                if(response.getData().get(k).getAll().contains("SNOWTAM")){
+                                    Log.d("AirportSnowtam",response.getData().get(k).getAll());
+                                    ap.setSnowtam(response.getData().get(k).getAll());
+                                }
+                                k++;
+                            }
 
                             Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
                                 @Override
