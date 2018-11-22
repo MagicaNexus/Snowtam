@@ -139,7 +139,7 @@ public class Accueil extends AppCompatActivity {
                             int k=0;
                             while(ap.getSnowtam()==null && k<response.getData().size()){
                                 if(response.getData().get(k).getAll().contains("SNOWTAM")){
-                                    Log.d("AirportSnowtam",response.getData().get(k).getAll());
+                                   // Log.d("AirportSnowtam",response.getData().get(k).getAll());
                                     ap.setSnowtam(response.getData().get(k).getAll());
                                 }
                                 k++;
@@ -148,29 +148,38 @@ public class Accueil extends AppCompatActivity {
                             Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
                                 @Override
                                 public void onResponse(ListAirportLocation response) {
-                                    ap.setLatitude(response.getData().get(0).getLatitude());
-                                    ap.setLongitude(response.getData().get(0).getLongitude());
-                                    ap.setName(response.getData().get(0).getAirport_name());
-                                    listAirport.add(ap);
-
-                                    if(j>=airportsCode.size()){
-
-
-                                        if (OK) {
-                                            Log.d("Airportsize", String.valueOf(listAirport.size()));
-
-                                            Intent intent = new Intent(Accueil.this, Results.class);
-                                            Bundle bundle = new Bundle();
-                                            bundle.putParcelableArrayList("airports",listAirport);
-                                            intent.putExtras(bundle);
-                                            champs1.setText("");
-                                            champs2.setText("");
-                                            champs3.setText("");
-                                            champs4.setText("");
-
-                                            startActivity(intent);
-                                        }
+                                    if(response.getData().size()>0) {
+                                        ap.setLatitude(response.getData().get(0).getLatitude());
+                                        ap.setLongitude(response.getData().get(0).getLongitude());
+                                        ap.setName(response.getData().get(0).getAirport_name());
+                                        listAirport.add(ap);
                                     }
+
+                                        if (j >= airportsCode.size()) {
+
+
+                                            if (OK) {
+                                                Log.d("Airportsize", String.valueOf(listAirport.size()));
+
+                                                Intent intent = new Intent(Accueil.this, Results.class);
+                                                Bundle bundle = new Bundle();
+                                                bundle.putParcelableArrayList("airports", listAirport);
+                                                intent.putExtras(bundle);
+                                                champs1.setText("");
+                                                champs2.setText("");
+                                                champs3.setText("");
+                                                champs4.setText("");
+
+                                                if (listAirport.size()>0) {
+                                                    startActivity(intent);
+                                                } else {
+                                                    final Context context = getApplicationContext();
+                                                    final int duration = Toast.LENGTH_SHORT;
+                                                    Toast.makeText(context, "Code ICAO non valide", duration).show();
+                                                }
+
+                                            }
+                                        }
 
                                 }
                             };
@@ -197,8 +206,6 @@ public class Accueil extends AppCompatActivity {
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
-
-
 
 
                 if(!OK){
