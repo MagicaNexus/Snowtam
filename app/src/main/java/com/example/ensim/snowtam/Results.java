@@ -47,21 +47,21 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         cl.add(v3);
 
 
-        Intent intent = getIntent();
+     /*   Intent intent = getIntent();
         if (intent != null){
             listAirport = intent.getParcelableArrayListExtra("airports");
         }
-
+*/
         //Données dures
-      /*  listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
+        listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));*/
+        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
 
         //TEXTVIEWS
 
         final TextView airportName0 = this.findViewById(R.id.airportname0);
-        final TextView airportName1 = this.findViewById(R.id.airportName1);
+        final TextView airportName1 = this.findViewById(R.id.airportname1);
         final TextView airportName2 = this.findViewById(R.id.airportname2);
         final TextView airportName3 = this.findViewById(R.id.airportname3);
         final TextView Longitude0= this.findViewById(R.id.longitude0);
