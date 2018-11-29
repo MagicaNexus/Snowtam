@@ -7,10 +7,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.widget.TextView;
@@ -22,11 +23,24 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
     private int index;
     private ArrayList<Airport> listAirport;
     private GestureDetectorCompat gestureDetectorCompat = null;
+    DemoCollectionPagerAdapter mDemoCollectionPagerAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_airport);
+
+        // ViewPager and its adapters use support library
+        // fragments, so use getSupportFragmentManager.
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new DemoCollectionPagerAdapter(getSupportFragmentManager(),
+                MainAirport.this));
+
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         /*GESTURE*/
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
