@@ -81,7 +81,8 @@ public class SnowtamDecode {
         }
 
         if(SnowtamCode.contains("D)")){
-    
+            SnowtamDecode+="D) CLEARED RUNWAY LENGTH  "+SnowtamCode.substring(SnowtamCode.indexOf("D) ")+3,SnowtamCode.indexOf("D) ")+6);
+            SnowtamDecode+="\n";
         }
 
 

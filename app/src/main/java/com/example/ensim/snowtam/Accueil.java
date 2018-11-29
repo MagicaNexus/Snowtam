@@ -98,7 +98,7 @@ public class Accueil extends AppCompatActivity {
 
                 //!!!!!!!!!!!!!!!!!!!//
                 SnowtamDecode truc=new SnowtamDecode();
-                String SnowtamDecode= truc.DecodeSnowtam("(SNOWTAM 0402\nA) ENBO\\nB) 11282019 C) 07\\nF) NIL/NIL/NIL H) 5/5/5\\nN) DELTA/7  ", "TA MERE");
+                String SnowtamDecode= truc.DecodeSnowtam("(SNOWTAM 0402\nA) ENBO\\nB) 12282019 C) 07\\nF) NIL/NIL/NIL H) 5/5/5\\nN) DELTA/7  ", "Airport");
 
 
 
