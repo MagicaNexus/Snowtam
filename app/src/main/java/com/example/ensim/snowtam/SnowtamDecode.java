@@ -2,33 +2,176 @@ package com.example.ensim.snowtam;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class SnowtamDecode {
 
     String SnowtamCode;
     //String SnowtamDecode="";
 
+    ArrayList<String> listLettres=new ArrayList<String>();
+
 
 
     public String DecodeSnowtam(String SnowtamCode, String nameAirport){
-        //this.SnowtamCode=SnowtamCode;
-        //this.SnowtamCode="(SNOWTAM 0402\\nA) ENBO\\nB) 112";
+        SnowtamCode=SupEnter(SnowtamCode);
+
+        for(int i=0; i<20;i++) {
+            listLettres.add("");
+        }
+
+        int IndiceDerniereLettre=0;
+
+        String s=SnowtamCode;
+
+        String[] split = s.split("A\\)");
+        //String poubelle = split[0];
+        listLettres.set(IndiceDerniereLettre,split[1]);
+        IndiceDerniereLettre=0;
+        //si B)
+        if(split[1].contains("B)")) {
+            split = split[1].split("B\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=1;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        //si C)
+        if(split[1].contains("C)")) {
+            split = split[1].split("C\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=2;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        //...
+        if(split[1].contains("D)")) {
+            split = split[1].split("D\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=3;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("E)")) {
+            split = split[1].split("E\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=4;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("F)")) {
+            split = split[1].split("F\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=5;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("G)")) {
+            split = split[1].split("G\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=6;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("H)")) {
+            split = split[1].split("H\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=7;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("I)")) {
+            split = split[1].split("I\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=8;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("J)")) {
+            split = split[1].split("J\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=9;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("K)")) {
+            split = split[1].split("K\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=10;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("L)")) {
+            split = split[1].split("L\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=11;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("M)")) {
+            split = split[1].split("M\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=12;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("N)")) {
+            split = split[1].split("N\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=13;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("O)")) {
+            split = split[1].split("O\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=14;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("P)")) {
+            split = split[1].split("P\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=15;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("Q)")) {
+            split = split[1].split("Q\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=16;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("R)")) {
+            split = split[1].split("R\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=17;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("S)")) {
+            split = split[1].split("S\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=18;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+        if(split[1].contains("T)")) {
+            split = split[1].split("T\\)");
+            listLettres.set(IndiceDerniereLettre, split[0]);
+            IndiceDerniereLettre=19;
+            listLettres.set(IndiceDerniereLettre, split[1]);
+        }
+
+
+/*
+        Log.d("Snowtam A",listLettres.get(0));
+        Log.d("Snowtam B",listLettres.get(1));
+        Log.d("Snowtam C",listLettres.get(2));
+        Log.d("Snowtam F",listLettres.get(5));
+
+*/
+
+
+        //on decode le snowtam pour chaque lettre une a une
         String SnowtamDecode="";
         String temp="";
 
 
-        SnowtamCode=SupEnter(SnowtamCode);
-
-
-        if(SnowtamCode.contains("A)")){
-            SnowtamDecode+=SnowtamCode.substring(SnowtamCode.indexOf("A) "),SnowtamCode.indexOf("B) "))+" - "+nameAirport;
+        //On decode A
+        if(listLettres.get(0)!=""){
+            SnowtamDecode+="A) "+listLettres.get(0)+" - "+nameAirport;
             SnowtamDecode+="\n";
         }
-
-        if(SnowtamCode.contains("B)")){
-            temp=SnowtamCode.substring(SnowtamCode.indexOf("B) "),SnowtamCode.indexOf("B) ")+11);
-            String day=temp.substring(5,7);
+        //On decode B
+        if(listLettres.get(1)!=""){
+            temp=listLettres.get(1);
+            String day=temp.substring(3,5);
             SnowtamDecode+="B) "+day+" ";
-            String month=temp.substring(3,5);
+            String month=temp.substring(1,3);
             switch(Integer.valueOf(month)) {
                 case 1:
                     month="JANUARY";
@@ -69,22 +212,75 @@ public class SnowtamDecode {
 
             }
             SnowtamDecode+=month+" AT ";
-            String hour=temp.substring(7,9);
-            String minutes=temp.substring(9,11);
+            String hour=temp.substring(5,7);
+            String minutes=temp.substring(7,9);
             SnowtamDecode+=hour+"h"+minutes+"UTC";
             SnowtamDecode+="\n";
         }
 
-        if(SnowtamCode.contains("C)")){
-            SnowtamDecode+="C) RUNWAY "+SnowtamCode.substring(SnowtamCode.indexOf("C) ")+3,SnowtamCode.indexOf("C) ")+5);
+        //On decode C
+        if(listLettres.get(2)!=""){
+            SnowtamDecode+="C) RUNWAY "+listLettres.get(2);
             SnowtamDecode+="\n";
         }
 
-        if(SnowtamCode.contains("D)")){
-            SnowtamDecode+="D) CLEARED RUNWAY LENGTH  "+SnowtamCode.substring(SnowtamCode.indexOf("D) ")+3,SnowtamCode.indexOf("D) ")+6);
+        //On decode D
+        if(listLettres.get(3)!=""){
+            SnowtamDecode+="D) CLEARED RUNWAY LENGTH  "+listLettres.get(3)+"M";
             SnowtamDecode+="\n";
         }
 
+        //On decode E
+        if(listLettres.get(4)!=""){
+            SnowtamDecode+="E) CLEARED RUNWAY WIDTH "+listLettres.get(4)+"M";
+            if(listLettres.get(4).contains("L")){
+                SnowtamDecode+=" LEFT";
+            }
+            else if(listLettres.get(4).contains("R")){
+                SnowtamDecode+=" RIGHT";
+            }
+            SnowtamDecode+="\n";
+        }
+
+        //On decode F
+        if(listLettres.get(5)!=""){
+            String[] conds = listLettres.get(5).split("/");
+            SnowtamDecode+="F) Threshold: ";
+            SnowtamDecode+=getConditions(conds[0]);
+            SnowtamDecode+=" / Mid runway: ";
+            SnowtamDecode+=getConditions(conds[1]);
+            SnowtamDecode+=" / Roll out: ";
+            SnowtamDecode+=getConditions(conds[2]);
+            SnowtamDecode+="\n";
+        }
+
+        //On decode G
+        if(listLettres.get(6)!=""){
+            String[] conds = SupEspace(listLettres.get(6)).split("/");
+            SnowtamDecode+="G) Threshold: ";
+            SnowtamDecode+=conds[0];
+            SnowtamDecode+="mm / Mid runway: ";
+            SnowtamDecode+=conds[1];
+            SnowtamDecode+="mm / Roll out: ";
+            SnowtamDecode+=conds[2]+"mm";
+            SnowtamDecode+="\n";
+        }
+
+        //On decode H
+        if(listLettres.get(7)!=""){
+            String[] conds = listLettres.get(7).split("/");
+            SnowtamDecode+="H) BRAKING ACTION Threshold: ";
+            SnowtamDecode+=getCoefFrottement(conds[0]);
+            SnowtamDecode+=" / Mid runway: ";
+            SnowtamDecode+=getCoefFrottement(conds[1]);
+            if(conds[2].contains(" ")){
+                String[] x=conds[2].split(" ");
+                SnowtamDecode+=" / Roll out: ";
+                SnowtamDecode+=getCoefFrottement(x[0]);
+                SnowtamDecode+="\nInstrument: "+x[1];
+            }
+            SnowtamDecode+="\n";
+        }
 
         Log.d("Snowtam Decode",SnowtamDecode);
 
@@ -92,6 +288,84 @@ public class SnowtamDecode {
         return SnowtamDecode;
     }
 
+    private String getConditions(String nbr) {
+        String cond="";
+        nbr=SupEspace(nbr);
+        if(!nbr.contains("NIL")) {
+            int nb=Integer.valueOf(nbr);
+            switch (nb) {
+                case 0:
+                    cond = "CLEAR AND DRY";
+                    break;
+                case 1:
+                    cond = "DAMP";
+                    break;
+                case 2:
+                    cond = "WET or WATER PATCHES";
+                    break;
+                case 3:
+                    cond = "RIME OR FROST COVERED";
+                    break;
+                case 4:
+                    cond = "DRY SNOW";
+                    break;
+                case 5:
+                    cond = "WET SNOW";
+                    break;
+                case 6:
+                    cond = "SLUSH";
+                    break;
+                case 7:
+                    cond = "ICE";
+                    break;
+                case 8:
+                    cond = "COMPACTED OR ROLLED SNOW";
+                    break;
+                case 9:
+                    cond = "FROZEN RUTS OR RIDGES";
+                    break;
+            }
+        }
+        else{
+            cond=nbr;
+        }
+
+
+        return cond;
+    }
+
+
+    private String getCoefFrottement(String nbr) {
+        String coef="";
+        nbr=SupEspace(nbr);
+        if(!nbr.contains("NIL")) {
+            int nb=Integer.valueOf(nbr);
+            if(nb>40 || nb==5){
+                coef="GOOD";
+            }
+            else if((nb>=36 && nb<=39) || nb==4){
+                coef="MEDIUM TO GOOD";
+            }
+            else if((nb>=30 && nb<=35) || nb==3){
+                coef="MEDIUM";
+            }
+            else if((nb>=26 && nb<=29) || nb==2){
+                coef="MEDIUM TO POOR";
+            }
+            else if(nb<=25 || nb==1){
+                coef="POOR";
+            }
+            else{
+                coef=nbr;
+            }
+        }
+        else{
+            coef=nbr;
+        }
+
+
+        return coef;
+    }
 
 
     String  SupEnter(String string){
@@ -100,6 +374,13 @@ public class SnowtamDecode {
         }
         if(string.contains("\n")) {
             string=string.replace("\n", "");
+        }
+        return string;
+    }
+
+    String  SupEspace(String string){
+        if(string.contains(" ")) {
+            string=string.replace(" ", "");
         }
         return string;
     }
