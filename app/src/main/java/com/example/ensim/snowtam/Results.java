@@ -123,6 +123,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Log.d("AirportLong", "Longitude = " + listAirport.get(i).getLongitude());
             Log.d("AirportName", "Name = " + listAirport.get(i).getName());
             Log.d("AirportIcao", "ICAO = " + listAirport.get(i).getICAO_Code());
+            Log.d("AirportSnowtam", "SNOWTAM = " + listAirport.get(i).getSnowtam());
             airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
             Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
             Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));

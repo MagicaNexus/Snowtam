@@ -143,6 +143,10 @@ public class Accueil extends AppCompatActivity {
                                 k++;
                             }
 
+                            if(ap.getSnowtam()==null){
+                                ap.setSnowtam("Pas de SNOWTAM disponible pour cet aéroport");
+                            }
+
                             Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
                                 @Override
                                 public void onResponse(ListAirportLocation response) {
