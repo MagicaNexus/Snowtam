@@ -47,12 +47,6 @@ public class Accueil extends AppCompatActivity {
         final ArrayList<String> airportsCode = new ArrayList<String>();
 
 
-       String SnowtamDecode= com.example.ensim.snowtam.SnowtamDecode.DecodeSnowtam("(SNOWTAM 0402\\nA) ENBO\\nB) 112");
-        Log.d("Snowtam Decode",SnowtamDecode);
-
-
-
-
 
         addChamps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -100,6 +94,15 @@ public class Accueil extends AppCompatActivity {
 
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
+
+
+                //!!!!!!!!!!!!!!!!!!!//
+                SnowtamDecode truc=new SnowtamDecode();
+                String SnowtamDecode= truc.DecodeSnowtam("(SNOWTAM 0402\nA) ENBO\\nB) 11282019 C) 07\\nF) NIL/NIL/NIL H) 5/5/5\\nN) DELTA/7  ", "TA MERE");
+
+
+
+
                 airportsCode.clear();
                 listAirport.clear();
 
