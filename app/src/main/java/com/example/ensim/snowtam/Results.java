@@ -199,10 +199,17 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     public void onClick(int num)
     {
+        Intent j = new Intent(Results.this, tabs1.class);
+        j.putExtra("index", num);
+        j.putExtra("listairport", listAirport);
+        startActivity(j);
+
         Intent i = new Intent(Results.this, MainAirport.class);
         i.putExtra("index", num);
         i.putExtra("listAirport", listAirport);
         startActivity(i);
+
+
     }
 
 
