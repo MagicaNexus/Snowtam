@@ -202,7 +202,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     public void onClick(int num)
     {
-       /* Intent j = new Intent(Results.this, tabs1.class);
+        /*Intent j = new Intent(Results.this, tabs1.class);
         j.putExtra("index", num);
         j.putExtra("listairport", listAirport);
         startActivity(j);
@@ -211,8 +211,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         i.putExtra("index", num);
         i.putExtra("listAirport", listAirport);
         startActivity(i);
-
 */
+
     }
 
 

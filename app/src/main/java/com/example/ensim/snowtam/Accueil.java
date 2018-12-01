@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -45,7 +46,8 @@ public class Accueil extends AppCompatActivity {
 
         final ArrayList<String> airportsCode = new ArrayList<String>();
 
-
+        final ProgressBar spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         addChamps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -94,6 +96,7 @@ public class Accueil extends AppCompatActivity {
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 OK=true;
+                spinner.setVisibility(View.VISIBLE);
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
@@ -177,16 +180,19 @@ public class Accueil extends AppCompatActivity {
                                                     sup2.setVisibility(View.GONE);
                                                     sup3.setVisibility(View.GONE);
                                                     sup4.setVisibility(View.GONE);
+                                                    spinner.setVisibility(View.GONE);
                                                 }
 
                                             }
                                             else{
                                                 Toast.makeText(context, "Vous devez remplir les champs", duration).show();
+                                                spinner.setVisibility(View.GONE);
                                             }
 
                                         }
                                         else{
                                             Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
+                                            spinner.setVisibility(View.GONE);
                                         }
 
                                 }
@@ -215,6 +221,7 @@ public class Accueil extends AppCompatActivity {
 
                 if(!OK){
                     Toast.makeText(context, "Vous devez remplir les champs", duration).show();
+                    spinner.setVisibility(View.GONE);
                 }
 
             }
