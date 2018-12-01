@@ -3,7 +3,6 @@ package com.example.ensim.snowtam;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +28,7 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
         ImageButton addChamps = (ImageButton) this.findViewById(R.id.addChamps);
-        FloatingActionButton valide = (FloatingActionButton) this.findViewById(R.id.valide);
+        ImageButton valide = (ImageButton) this.findViewById(R.id.valide);
         final EditText champs1=(EditText) this.findViewById(R.id.champs1);
         final EditText champs2=(EditText) this.findViewById(R.id.champs2);
         final EditText champs3=(EditText) this.findViewById(R.id.champs3);
@@ -98,15 +97,6 @@ public class Accueil extends AppCompatActivity {
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
-                //!!!!!!!!!!!!!!!!!!!//
- /*               SnowtamDecode truc=new SnowtamDecode();
-                String SnowtamDecode= truc.DecodeSnowtam("(SNOWTAM 0402\nA) ENBO\\nB) 11282019" +
-                        " C) 07\\nF) 5/8/2 G) 20/4/8  H)  37/31/41 GRTJ) 30/5RK) NO LRL) 1200/30 M)0030   " +
-                        "\\nN)JULIET MIKE WHISKEY DELTA/7 P) YES20 S) 10111630 " +
-                        "T) RWY 01R\\nCONTAMINATION/100/100/100/PERCENT.\\nRWY 01L\\nOBSERVATION TIME RWY 01L " +
-                        "201811301433\\nCONTAMINATION/100/100/100/PERCENT.)\\nCREATED: 30 Nov 2018 14:44:00 \\nSOURCE: EUECYIYN\"", "Airport");
-
-*/
 
                 airportsCode.clear();
                 listAirport.clear();
@@ -126,14 +116,9 @@ public class Accueil extends AppCompatActivity {
 
 
                 //requete a l'api
-
-
-
                 int i;
 
                 //on verifie ici que les champs visibles sont remplis
-
-                //!!!!!!!!!!il faudra aussi verifier que ce n'est que 4 lettres VALIDES
                 for(i=0; i<airportsCode.size(); i++){
                     if(airportsCode.get(i).length()==0)OK=false;
                 }

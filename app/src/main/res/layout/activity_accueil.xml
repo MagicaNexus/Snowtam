@@ -4,13 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/fond1"
+    android:backgroundTint="#59000000"
+    android:backgroundTintMode="src_over"
     tools:context=".Accueil">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="208dp"
-        android:layout_height="177dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="Codes ICAO"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -18,50 +40,51 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/avion" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="204dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:inputType="textCapCharacters"
-            android:singleLine="true"
-            android:maxLength="4"
             android:id="@+id/champs1"
             android:layout_width="245dp"
             android:layout_height="38dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="2dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/my_border"
+            android:backgroundTint="#73FFFFFF"
+            android:gravity="center"
+            android:inputType="textCapCharacters"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/champs2"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:inputType="textCapCharacters"
-            android:singleLine="true"
-            android:maxLength="4"
             android:id="@+id/champs2"
             android:layout_width="245dp"
             android:layout_height="38dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:inputType="textCapCharacters"
+            android:maxLength="4"
+            android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/champs3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/champs1"
-            tools:layout_editor_absoluteX="8dp" />
+            android:background="@drawable/my_border"
+            android:backgroundTint="#73FFFFFF"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
         <ImageButton
             android:id="@+id/sup2"
@@ -78,18 +101,25 @@
             app:srcCompat="@android:drawable/ic_delete" />
 
         <EditText
-            android:inputType="textCapCharacters"
-            android:singleLine="true"
-            android:maxLength="4"
             android:id="@+id/champs3"
             android:layout_width="245dp"
             android:layout_height="38dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/darker_gray"
+            android:inputType="textCapCharacters"
+            android:maxLength="4"
+            android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/champs4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/champs2"
-            tools:layout_editor_absoluteX="8dp" />
+            android:background="@drawable/my_border"
+            android:backgroundTint="#73FFFFFF"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
         <ImageButton
             android:id="@+id/sup3"
@@ -106,18 +136,25 @@
             app:srcCompat="@android:drawable/ic_delete" />
 
         <EditText
-            android:inputType="textCapCharacters"
-            android:singleLine="true"
-            android:maxLength="4"
             android:id="@+id/champs4"
             android:layout_width="245dp"
             android:layout_height="38dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:inputType="textCapCharacters"
+            android:maxLength="4"
+            android:singleLine="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/champs3"
-            tools:layout_editor_absoluteX="8dp" />
+            android:background="@drawable/my_border"
+            android:backgroundTint="#73FFFFFF"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
         <ImageButton
             android:id="@+id/sup4"
@@ -148,25 +185,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.075"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:layout_constraintVertical_bias="0.13"
+        app:srcCompat="@mipmap/add" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/valide"
-        android:layout_width="56dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimaryDark"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="?android:attr/textCheckMark" />
+        app:srcCompat="@mipmap/valide" />
 
 </android.support.constraint.ConstraintLayout>
