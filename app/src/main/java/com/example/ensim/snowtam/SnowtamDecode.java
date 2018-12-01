@@ -1,7 +1,5 @@
 package com.example.ensim.snowtam;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class SnowtamDecode {
@@ -168,52 +166,14 @@ public class SnowtamDecode {
         }
         //On decode B
         if(listLettres.get(1)!=""){
-            temp=listLettres.get(1);
-            String day=temp.substring(3,5);
+            temp=SupEspace(listLettres.get(1));
+            String day=temp.substring(2,4);
             SnowtamDecode+="B) "+day+" ";
-            String month=temp.substring(1,3);
-            switch(Integer.valueOf(month)) {
-                case 1:
-                    month="JANUARY";
-                    break;
-                case 2:
-                    month="FEBRUARY";
-                    break;
-                case 3:
-                    month="MARCH";
-                    break;
-                case 4:
-                    month="APRIL";
-                    break;
-                case 5:
-                    month="MAY";
-                    break;
-                case 6:
-                    month="JUNE";
-                    break;
-                case 7:
-                    month="JULY";
-                    break;
-                case 8:
-                    month="AUGUST";
-                    break;
-                case 9:
-                    month="SEPTEMBER";
-                    break;
-                case 10:
-                    month="OCTOBER";
-                    break;
-                case 11:
-                    month="NOVEMBER";
-                    break;
-                case 12:
-                    month="DECEMBER";
-                    break;
-
-            }
+            String month=temp.substring(0,2);
+            month=getMonth(Integer.valueOf(month));
             SnowtamDecode+=month+" AT ";
-            String hour=temp.substring(5,7);
-            String minutes=temp.substring(7,9);
+            String hour=temp.substring(4,6);
+            String minutes=temp.substring(6,8);
             SnowtamDecode+=hour+"h"+minutes+"UTC";
             SnowtamDecode+="\n";
         }
@@ -352,10 +312,61 @@ public class SnowtamDecode {
             SnowtamDecode+="\n";
         }
 
+        //On decode N
+        if(listLettres.get(13)!=""){
+            //A implementer
+            SnowtamDecode+="N) ....... ";
+            SnowtamDecode+="\n";
+        }
+
+        //On decode P
+        if(listLettres.get(15)!=""){
+            if(listLettres.get(15).contains("YES")){
+                String[] conds = listLettres.get(15).split("S");
+                SnowtamDecode+="P) SNOW BANKS: YES SPACE "+conds[1]+"m";
+            }
+            SnowtamDecode+="\n";
+        }
+
+        //On decode R
+        if(listLettres.get(17)!=""){
+            //A implementer
+            SnowtamDecode+="R) ....... ";
+            SnowtamDecode+="\n";
+        }
+
+        //On decode S
+        if(listLettres.get(18)!=""){
+            temp=SupEspace(listLettres.get(18));
+            String day=temp.substring(2,4);
+            SnowtamDecode+="S) NEXT OBSERVATION "+day+" ";
+            String month=temp.substring(0,2);
+            month=getMonth(Integer.valueOf(month));
+            SnowtamDecode+=month+" AT ";
+            String hour=temp.substring(4,6);
+            String minutes=temp.substring(6,8);
+            SnowtamDecode+=hour+"h"+minutes+"UTC";
+            SnowtamDecode+="\n";
+        }
+
+        //On decode T
+        if(listLettres.get(19)!=""){
+            String tmp=listLettres.get(19).replaceAll("CONTAMINATION","\nCONTAMINATION");
+            tmp=tmp.replaceAll("RWY","RUNWAY");
+            tmp=tmp.replaceAll("OBSERVATION","\nOBSERVATION");
+            tmp=tmp.replaceAll("\\.",".\n");
+            tmp=tmp.replaceAll("100","51–100%");
+            tmp=tmp.replaceAll("50","26–50%");
+            tmp=tmp.replaceAll("25","11–25%");
+           // tmp=tmp.replaceAll("10","less than 10%");
+            tmp=tmp.replaceAll("PERCENT","");
+            SnowtamDecode+="T) "+tmp;
+            SnowtamDecode+="\n";
+        }
 
 
 
-        Log.d("Snowtam Decode",SnowtamDecode);
+       // Log.d("Snowtam Decode",SnowtamDecode);
 
 
         return SnowtamDecode;
@@ -456,5 +467,49 @@ public class SnowtamDecode {
             string=string.replace(" ", "");
         }
         return string;
+    }
+
+    String getMonth(int nb){
+        String m="ND";
+        switch(nb) {
+            case 1:
+                m="JANUARY";
+                break;
+            case 2:
+                m="FEBRUARY";
+                break;
+            case 3:
+                m="MARCH";
+                break;
+            case 4:
+                m="APRIL";
+                break;
+            case 5:
+                m="MAY";
+                break;
+            case 6:
+                m="JUNE";
+                break;
+            case 7:
+                m="JULY";
+                break;
+            case 8:
+                m="AUGUST";
+                break;
+            case 9:
+                m="SEPTEMBER";
+                break;
+            case 10:
+                m="OCTOBER";
+                break;
+            case 11:
+                m="NOVEMBER";
+                break;
+            case 12:
+                m="DECEMBER";
+                break;
+
+        }
+        return m;
     }
 }

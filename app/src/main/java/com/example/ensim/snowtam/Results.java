@@ -45,7 +45,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         cl.add(v1);
         cl.add(v2);
         cl.add(v3);
-
+        SnowtamDecode truc=new SnowtamDecode();
+        String SnowtamDecode="";
 
       Intent intent = getIntent();
         if (intent != null){
@@ -124,6 +125,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Log.d("AirportName", "Name = " + listAirport.get(i).getName());
             Log.d("AirportIcao", "ICAO = " + listAirport.get(i).getICAO_Code());
             Log.d("AirportSnowtam", "SNOWTAM = " + listAirport.get(i).getSnowtam());
+            SnowtamDecode=truc.DecodeSnowtam(listAirport.get(i).getSnowtam(),listAirport.get(i).getName());
+            Log.d("AirportSnowtamDecode", "SNOWTAM décodé = " + SnowtamDecode);
             airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
             Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
             Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));

@@ -94,15 +94,19 @@ public class Accueil extends AppCompatActivity {
 
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
+                OK=true;
 
-
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
                 //!!!!!!!!!!!!!!!!!!!//
-                SnowtamDecode truc=new SnowtamDecode();
+ /*               SnowtamDecode truc=new SnowtamDecode();
                 String SnowtamDecode= truc.DecodeSnowtam("(SNOWTAM 0402\nA) ENBO\\nB) 11282019" +
-                        " C) 07\\nF) 5/8/2 G) 20/4/8  H)  37/31/41 GRTJ) 30/5RK) NO LRL) 1200/30 M)0030   \\nN) DELTA/7  ", "Airport");
+                        " C) 07\\nF) 5/8/2 G) 20/4/8  H)  37/31/41 GRTJ) 30/5RK) NO LRL) 1200/30 M)0030   " +
+                        "\\nN)JULIET MIKE WHISKEY DELTA/7 P) YES20 S) 10111630 " +
+                        "T) RWY 01R\\nCONTAMINATION/100/100/100/PERCENT.\\nRWY 01L\\nOBSERVATION TIME RWY 01L " +
+                        "201811301433\\nCONTAMINATION/100/100/100/PERCENT.)\\nCREATED: 30 Nov 2018 14:44:00 \\nSOURCE: EUECYIYN\"", "Airport");
 
-
-
+*/
 
                 airportsCode.clear();
                 listAirport.clear();
@@ -133,7 +137,6 @@ public class Accueil extends AppCompatActivity {
                 for(i=0; i<airportsCode.size(); i++){
                     if(airportsCode.get(i).length()==0)OK=false;
                 }
-
 
                 for (final String codeICAO:airportsCode) {
 
@@ -168,9 +171,7 @@ public class Accueil extends AppCompatActivity {
                                         ap.setICAO_Code(codeICAO);
                                         listAirport.add(ap);
                                     }
-
                                         if (listAirport.size() >= airportsCode.size()) {
-
 
                                             if (OK) {
 
@@ -191,15 +192,16 @@ public class Accueil extends AppCompatActivity {
                                                     sup2.setVisibility(View.GONE);
                                                     sup3.setVisibility(View.GONE);
                                                     sup4.setVisibility(View.GONE);
-                                                } else {
-                                                    final Context context = getApplicationContext();
-                                                    final int duration = Toast.LENGTH_SHORT;
-                                                    Toast.makeText(context, "Code ICAO non valide", duration).show();
-
-                                                    //!!!!!!!!!!!!!!!!!!a revoir!!!!!!!!!!!!!!!!!!
                                                 }
 
                                             }
+                                            else{
+                                                Toast.makeText(context, "Vous devez remplir les champs", duration).show();
+                                            }
+
+                                        }
+                                        else{
+                                            Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
                                         }
 
                                 }
@@ -225,14 +227,10 @@ public class Accueil extends AppCompatActivity {
 
                 }
 
-                final Context context = getApplicationContext();
-                final int duration = Toast.LENGTH_SHORT;
-
 
                 if(!OK){
                     Toast.makeText(context, "Vous devez remplir les champs", duration).show();
                 }
-
 
             }
         });
