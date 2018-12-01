@@ -282,6 +282,79 @@ public class SnowtamDecode {
             SnowtamDecode+="\n";
         }
 
+        //On decode J
+        if(listLettres.get(9)!=""){
+            String[] conds = listLettres.get(9).split("/");
+            SnowtamDecode+="J) CRITICAL SNOW BANK: ";
+            SnowtamDecode+=conds[0]+"cm / ";
+            if(conds[1].contains("L")&&!conds[1].contains("LR")){
+                conds=conds[1].split("L");
+                SnowtamDecode+=conds[0]+"m LEFT of Runway";
+            }
+            else if(conds[1].contains("R")&&!conds[1].contains("LR")){
+                conds=conds[1].split("R");
+                SnowtamDecode+=conds[0]+"m Right of Runway";
+            }
+            else if(conds[1].contains("LR")){
+                conds=conds[1].split("LR");
+                SnowtamDecode+=conds[0]+"m RIGHT and LEFT of Runway";
+            }
+            SnowtamDecode+="\n";
+        }
+
+        //On decode K
+        if(listLettres.get(10)!=""){
+            if(listLettres.get(10).contains("YES")){
+                String[] conds = listLettres.get(10).split("S ");
+                SnowtamDecode+="K) Lights obscured: YES ";
+                if(conds[1].contains("L")&&!conds[1].contains("LR")){
+                    SnowtamDecode+="LEFT of Runway";
+                }
+                else if(conds[1].contains("R")&&!conds[1].contains("LR")){
+                    SnowtamDecode+="Right of Runway";
+                }
+                else if(conds[1].contains("LR")){
+                    SnowtamDecode+="RIGHT and LEFT of Runway";
+                }
+            }
+            else if(listLettres.get(10).contains("NO")){
+                String[] conds = listLettres.get(10).split("O ");
+                SnowtamDecode+="K) Lights obscured: NO ";
+                if(conds[1].contains("L")&&!conds[1].contains("LR")){
+                    SnowtamDecode+="LEFT of Runway";
+                }
+                else if(conds[1].contains("R")&&!conds[1].contains("LR")){
+                    SnowtamDecode+="Right of Runway";
+                }
+                else if(conds[1].contains("LR")){
+                    SnowtamDecode+="RIGHT and LEFT of Runway";
+                }
+            }
+            SnowtamDecode+="\n";
+        }
+
+
+        //On decode L
+        if(listLettres.get(11)!=""){
+            if (listLettres.get(11).contains("/")){
+                String[] longs=listLettres.get(11).split("/");
+                SnowtamDecode+="L) FURTHER CLEARANCE "+longs[0]+"m / "+SupEspace(longs[1])+"m";
+            }
+            else if(listLettres.get(11).contains("TOTAL")){
+                SnowtamDecode+="L) FURTHER CLEARANCE TOTAL";
+            }
+            SnowtamDecode+="\n";
+        }
+
+        //On decode M
+        if(listLettres.get(12)!=""){
+            SnowtamDecode+="M) Anticipated time of completion "+SupEspace(listLettres.get(12))+" UTC";
+            SnowtamDecode+="\n";
+        }
+
+
+
+
         Log.d("Snowtam Decode",SnowtamDecode);
 
 
