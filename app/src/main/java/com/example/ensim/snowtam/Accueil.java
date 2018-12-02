@@ -23,7 +23,7 @@ public class Accueil extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
     boolean OK=true;
-    boolean testIntent=false;
+    int cpteur=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +97,8 @@ public class Accueil extends AppCompatActivity {
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 OK=true;
-                testIntent=false;
                 spinner.setVisibility(View.VISIBLE);
+                cpteur=0;
 
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
@@ -129,7 +129,7 @@ public class Accueil extends AppCompatActivity {
                 }
 
                 for (final String codeICAO:airportsCode) {
-
+                    cpteur++;
                     final Airport ap=new Airport();
 
 
@@ -164,7 +164,6 @@ public class Accueil extends AppCompatActivity {
                                         if (listAirport.size() >= airportsCode.size()) {
 
                                             if (OK) {
-                                                testIntent=true;
                                                 Intent intent = new Intent(Accueil.this, Results.class);
                                                 Bundle bundle = new Bundle();
                                                 bundle.putParcelableArrayList("airports", listAirport);
@@ -187,14 +186,14 @@ public class Accueil extends AppCompatActivity {
                                                 }
 
                                             }
-                                            else{
-                                                if(testIntent==false) {
-                                                    Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
-                                                    spinner.setVisibility(View.GONE);
-                                                }
-                                            }
-
                                         }
+                                        else{
+                                            if(cpteur==airportsCode.size()&&listAirport.size()==0) {
+                                                Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
+                                                spinner.setVisibility(View.GONE);
+                                            }
+                                        }
+
                                 }
                             };
                             Response.ErrorListener errorListener2 = new Response.ErrorListener() {

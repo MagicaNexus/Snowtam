@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,15 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         final ConstraintLayout v1 = findViewById(R.id.constraintLayout1);
         final ConstraintLayout v2 = findViewById(R.id.constraintLayout2);
         final ConstraintLayout v3 = findViewById(R.id.constraintLayout3);
+        final ImageButton add1=findViewById(R.id.add1);
+        final ImageButton add2=findViewById(R.id.add2);
+        final ImageButton add3=findViewById(R.id.add3);
+        add1.setVisibility(View.GONE);
+        add2.setVisibility(View.GONE);
+        add3.setVisibility(View.GONE);
+        final ImageButton go1=findViewById(R.id.go1);
+        final ImageButton go2=findViewById(R.id.go2);
+        final ImageButton go3=findViewById(R.id.go3);
 
         cl.add(v0);
         cl.add(v1);
@@ -55,11 +65,11 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         }
 
         //Données dures
-        /*listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
+       /* listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
-*/
+        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));*/
+
         //TEXTVIEWS
 
         final TextView airportName0 = this.findViewById(R.id.airportname0);
@@ -89,36 +99,6 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         Latitude.add(Latitude3);
 
 
-        if(listAirport.size() == 1)
-        {
-            v1.setVisibility(invisible);
-            v2.setVisibility(invisible);
-            v3.setVisibility(invisible);
-        }
-
-        if(listAirport.size() == 2)
-        {
-
-            v1.setVisibility(visible);
-            v2.setVisibility(invisible);
-            v3.setVisibility(invisible);
-        }
-
-        if(listAirport.size() == 3)
-        {
-
-            v1.setVisibility(visible);
-            v2.setVisibility(visible);
-            v3.setVisibility(invisible);
-        }
-
-        if(listAirport.size() == 4)
-        {
-            v1.setVisibility(visible);
-            v2.setVisibility(visible);
-            v3.setVisibility(visible);
-        }
-
         DecimalFormat df = new DecimalFormat("########.0000000");
         for(int i=0;i<listAirport.size();i++)
         {
@@ -133,9 +113,53 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             Longitude.get(i).setText("Lon. : " +  String.valueOf(df.format(listAirport.get(i).getLatitude())));
             Latitude.get(i).setText("Lat. : " + String.valueOf(df.format(listAirport.get(i).getLongitude())));
 
-           // Log.d("AirportSnowtam",listAirport.get(i).getSnowtam());
+            // Log.d("AirportSnowtam",listAirport.get(i).getSnowtam());
 
         }
+
+        if(listAirport.size() == 1)
+        {
+            add1.setVisibility(visible);
+            add2.setVisibility(visible);
+            add3.setVisibility(visible);
+            go1.setVisibility(View.GONE);
+            go2.setVisibility(View.GONE);
+            go3.setVisibility(View.GONE);
+        }
+
+        if(listAirport.size() == 2)
+        {
+
+            add1.setVisibility(View.GONE);
+            add2.setVisibility(visible);
+            add3.setVisibility(visible);
+            go1.setVisibility(visible);
+            go2.setVisibility(View.GONE);
+            go3.setVisibility(View.GONE);
+        }
+
+        if(listAirport.size() == 3)
+        {
+
+            add1.setVisibility(View.GONE);
+            add2.setVisibility(View.GONE);
+            add3.setVisibility(visible);
+            go1.setVisibility(visible);
+            go2.setVisibility(visible);
+            go3.setVisibility(View.GONE);
+        }
+
+        if(listAirport.size() == 4)
+        {
+            add1.setVisibility(View.GONE);
+            add2.setVisibility(View.GONE);
+            add3.setVisibility(View.GONE);
+            go1.setVisibility(visible);
+            go2.setVisibility(visible);
+            go3.setVisibility(visible);
+        }
+
+
 
         v0.setOnClickListener(new View.OnClickListener() {
             @Override
