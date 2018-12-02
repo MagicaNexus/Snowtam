@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Results extends AppCompatActivity implements OnMapReadyCallback {
@@ -54,11 +55,11 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         }
 
         //Données dures
-       /* listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
+        /*listAirport.add(new Airport("FEML", 49.004476, 2.577238, "snowtam", "Marseille"));
         listAirport.add(new Airport("HYML", 2.577238, 49.004476, "snowtam2", "Londres"));
         listAirport.add(new Airport("QHYL", 45.7484, 4.8467, "snowtam", "Lyon"));
-        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));*/
-
+        listAirport.add(new Airport("SZDS", 47.2172, -1.5533, "snowtam", "Nantes"));
+*/
         //TEXTVIEWS
 
         final TextView airportName0 = this.findViewById(R.id.airportname0);
@@ -118,6 +119,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             v3.setVisibility(visible);
         }
 
+        DecimalFormat df = new DecimalFormat("########.0000000");
         for(int i=0;i<listAirport.size();i++)
         {
             Log.d("AirportLat", "Latitude = " + listAirport.get(i).getLatitude());
@@ -128,8 +130,8 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
             SnowtamDecode=truc.DecodeSnowtam(listAirport.get(i).getSnowtam(),listAirport.get(i).getName());
             Log.d("AirportSnowtamDecode", "SNOWTAM décodé = " + SnowtamDecode);
             airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
-            Longitude.get(i).setText("Lon. : " +  String.valueOf(listAirport.get(i).getLatitude()));
-            Latitude.get(i).setText("Lat. : " + String.valueOf(listAirport.get(i).getLongitude()));
+            Longitude.get(i).setText("Lon. : " +  String.valueOf(df.format(listAirport.get(i).getLatitude())));
+            Latitude.get(i).setText("Lat. : " + String.valueOf(df.format(listAirport.get(i).getLongitude())));
 
            // Log.d("AirportSnowtam",listAirport.get(i).getSnowtam());
 

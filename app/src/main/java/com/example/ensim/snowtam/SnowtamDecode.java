@@ -14,7 +14,7 @@ public class SnowtamDecode {
     public String DecodeSnowtam(String SnowtamCode, String nameAirport){
         SnowtamCode=SupEnter(SnowtamCode);
 
-        if(!SnowtamCode.contains("Pas de SNOWTAM disponible pour cet aéroport")) {
+        if(!SnowtamCode.contains("Pas de SNOWTAM disponible pour cet aéroport")&&SnowtamCode.contains("A)")) {
 
             for (int i = 0; i < 20; i++) {
                 listLettres.add("");

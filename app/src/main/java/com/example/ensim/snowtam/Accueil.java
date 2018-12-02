@@ -23,6 +23,7 @@ public class Accueil extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
     boolean OK=true;
+    boolean testIntent=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class Accueil extends AppCompatActivity {
         valide.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 OK=true;
+                testIntent=false;
                 spinner.setVisibility(View.VISIBLE);
 
                 final Context context = getApplicationContext();
@@ -162,7 +164,7 @@ public class Accueil extends AppCompatActivity {
                                         if (listAirport.size() >= airportsCode.size()) {
 
                                             if (OK) {
-
+                                                testIntent=true;
                                                 Intent intent = new Intent(Accueil.this, Results.class);
                                                 Bundle bundle = new Bundle();
                                                 bundle.putParcelableArrayList("airports", listAirport);
@@ -173,6 +175,7 @@ public class Accueil extends AppCompatActivity {
                                                 champs4.setText("");
 
                                                 if (listAirport.size()>0) {
+
                                                     startActivity(intent);
                                                     champs2.setVisibility(View.GONE);
                                                     champs3.setVisibility(View.GONE);
@@ -185,16 +188,13 @@ public class Accueil extends AppCompatActivity {
 
                                             }
                                             else{
-                                                Toast.makeText(context, "Vous devez remplir les champs", duration).show();
-                                                spinner.setVisibility(View.GONE);
+                                                if(testIntent==false) {
+                                                    Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
+                                                    spinner.setVisibility(View.GONE);
+                                                }
                                             }
 
                                         }
-                                        else{
-                                            Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
-                                            spinner.setVisibility(View.GONE);
-                                        }
-
                                 }
                             };
                             Response.ErrorListener errorListener2 = new Response.ErrorListener() {

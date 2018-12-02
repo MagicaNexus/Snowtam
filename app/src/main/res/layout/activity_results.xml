@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@mipmap/fond1"
+    android:backgroundTint="#59000000"
+    android:backgroundTintMode="src_over"
     tools:context=".Results">
 
     <android.support.constraint.ConstraintLayout
@@ -15,9 +17,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/backgroundLayout"
-
-
+        android:background="@drawable/airport_border"
+        android:backgroundTint="#66000010"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
@@ -34,7 +35,8 @@
             android:layout_marginBottom="8dp"
             android:text="Longitude : 42.032564"
             android:textAlignment="center"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -52,7 +54,8 @@
             android:layout_marginBottom="8dp"
             android:text="42.256545"
             android:textAlignment="textStart"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +78,25 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/longitude3"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@mipmap/go" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -87,13 +108,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/backgroundLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@drawable/airport_border"
+        android:backgroundTint="#66000010">
 
         <TextView
             android:id="@+id/latitude2"
@@ -105,7 +127,8 @@
             android:layout_marginBottom="8dp"
             android:text="Longitude : 42.032564"
             android:textAlignment="center"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -123,7 +146,8 @@
             android:layout_marginBottom="8dp"
             android:text="42.256545"
             android:textAlignment="textStart"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -146,7 +170,25 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/longitude2"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@mipmap/go" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -155,12 +197,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-
-
+        android:background="@drawable/airport_border"
+        android:backgroundTint="#66000010"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/backgroundLayout"
         app:layout_constraintBottom_toTopOf="@+id/mapViewResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout0"
@@ -178,7 +219,8 @@
             android:layout_marginBottom="8dp"
             android:text="Longitude : 42.032564"
             android:textAlignment="center"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -196,7 +238,8 @@
             android:layout_marginBottom="8dp"
             android:text="42.256545"
             android:textAlignment="textStart"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -219,7 +262,25 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/longitude1"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@mipmap/go" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -231,13 +292,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/backgroundLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        android:background="@drawable/airport_border"
+        android:backgroundTint="#66000010">
 
         <TextView
             android:id="@+id/latitude0"
@@ -249,7 +311,8 @@
             android:layout_marginBottom="8dp"
             android:text="Longitude : 42.032564"
             android:textAlignment="center"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -267,7 +330,8 @@
             android:layout_marginBottom="8dp"
             android:text="42.256545"
             android:textAlignment="textStart"
-
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -290,7 +354,25 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/longitude0"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@mipmap/go" />
 
     </android.support.constraint.ConstraintLayout>
 
