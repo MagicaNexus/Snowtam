@@ -234,11 +234,15 @@ public class SnowtamDecode {
                 SnowtamDecode += getCoefFrottement(conds[0]);
                 SnowtamDecode += " / Mid runway: ";
                 SnowtamDecode += getCoefFrottement(conds[1]);
-                if (conds[2].contains(" ")) {
+                if (conds[2].contains(" ")&&!conds[2].contains(")")) {
                     String[] x = conds[2].split(" ");
                     SnowtamDecode += " / Roll out: ";
                     SnowtamDecode += getCoefFrottement(x[0]);
                     SnowtamDecode += "\nInstrument: " + x[1];
+                }
+                else if(conds[2].length()>0){
+                    SnowtamDecode += " / Roll out: ";
+                    SnowtamDecode += getCoefFrottement(conds[2].substring(0,1));
                 }
                 SnowtamDecode += "\n";
             }
