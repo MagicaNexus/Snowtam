@@ -10,7 +10,7 @@ public class AirportLocation {
     private float dangerous;
     private float VMC_IMC;
     private String date;
-    private String airport_name;
+    private String airportName;
     private double latitude;
     private double longitude;
     private String countryCode;
@@ -53,7 +53,7 @@ public class AirportLocation {
     }
 
     public String getAirport_name() {
-        return airport_name;
+        return airportName;
     }
 
     public double getLatitude() {
@@ -111,7 +111,7 @@ public class AirportLocation {
     }
 
     public void setAirport_name(String airport_name) {
-        this.airport_name = airport_name;
+        this.airportName = airport_name;
     }
 
     public void setLatitude(double latitude) {

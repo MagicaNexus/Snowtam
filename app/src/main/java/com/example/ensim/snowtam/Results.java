@@ -117,6 +117,25 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
         }
 
+        add1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Results.this.onClickAdd(listAirport);
+            }
+        });
+        add2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Results.this.onClickAdd(listAirport);
+            }
+        });
+        add3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Results.this.onClickAdd(listAirport);
+            }
+        });
+
         if(listAirport.size() == 1)
         {
             add1.setVisibility(visible);
@@ -241,6 +260,13 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
+    public void onClickAdd(ArrayList<Airport> listAirport)
+    {
+        Intent j = new Intent(Results.this, Accueil.class);
+        j.putExtra("listAirport", listAirport);
+        startActivity(j);
+
+    }
 
 
 }

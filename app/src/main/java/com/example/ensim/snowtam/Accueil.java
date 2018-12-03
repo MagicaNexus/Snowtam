@@ -29,6 +29,7 @@ public class Accueil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+
         ImageButton addChamps = (ImageButton) this.findViewById(R.id.addChamps);
         ImageButton valide = (ImageButton) this.findViewById(R.id.valide);
         final EditText champs1=(EditText) this.findViewById(R.id.champs1);
@@ -44,6 +45,36 @@ public class Accueil extends AppCompatActivity {
         sup2.setVisibility(View.GONE);
         sup3.setVisibility(View.GONE);
         sup4.setVisibility(View.GONE);
+
+        ArrayList<Airport> listAirportGet=new ArrayList<Airport>();
+        Intent intent = getIntent();
+        if(intent!=null){
+            listAirportGet= intent.getParcelableArrayListExtra("listAirport");
+            if (intent != null && listAirportGet !=null){
+                for(int x=0;x<listAirportGet.size();x++) {
+                    if(x==0) {
+                        champs1.setText(listAirportGet.get(0).getICAO_Code());
+                        champs2.setVisibility(View.VISIBLE);
+                        sup2.setVisibility(View.VISIBLE);
+                    }
+                    if(x==1){
+                        champs2.setText(listAirportGet.get(0).getICAO_Code());
+                        champs3.setVisibility(View.VISIBLE);
+                        sup3.setVisibility(View.VISIBLE);
+                    }
+                    if(x==2){
+                        champs3.setText(listAirportGet.get(0).getICAO_Code());
+                        champs4.setVisibility(View.VISIBLE);
+                        sup4.setVisibility(View.VISIBLE);
+                    }
+                    if(x==3){
+                        champs4.setText(listAirportGet.get(0).getICAO_Code());
+                    }
+                    Log.d("machin", "truc : " + listAirportGet.get(x).getICAO_Code());
+                }
+            }
+        }
+
 
         final ArrayList<String> airportsCode = new ArrayList<String>();
 
