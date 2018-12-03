@@ -21,7 +21,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class Results extends AppCompatActivity implements OnMapReadyCallback {
+import Model.Airport;
+import Model.SnowtamDecode;
+import Model.SnowtamRecuperation;
+
+public class ResultsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ArrayList<Airport> listAirport = new ArrayList<>();
     private ArrayList<TextView> airportName = new ArrayList<>();
@@ -123,19 +127,19 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClickAdd(listAirport);
+                ResultsActivity.this.onClickAdd(listAirport);
             }
         });
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClickAdd(listAirport);
+                ResultsActivity.this.onClickAdd(listAirport);
             }
         });
         add3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClickAdd(listAirport);
+                ResultsActivity.this.onClickAdd(listAirport);
             }
         });
 
@@ -186,28 +190,28 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
         v0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClick(0);
+                ResultsActivity.this.onClick(0);
             }
         });
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClick(1);
+                ResultsActivity.this.onClick(1);
             }
         });
 
         v2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClick(2);
+                ResultsActivity.this.onClick(2);
             }
         });
 
         v3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Results.this.onClick(3);
+                ResultsActivity.this.onClick(3);
             }
         });
 
@@ -240,7 +244,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
                     if(marker.getTitle().equals(listAirport.get(j).getName()))
                     {
                         Log.d("Marker :", marker.getTitle() + " =? " + listAirport.get(j).getName());
-                        Results.this.onClick(j);
+                        ResultsActivity.this.onClick(j);
                     }
 
                 }
@@ -250,7 +254,12 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     public void onClick(int num)
     {
-        Intent i = new Intent(Results.this, MainAirport.class);
+        Intent i = new Intent(ResultsActivity.this, MainAirportActivity.class);
+        SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
+        Log.d("GetSet Results Avant :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
+        recup.setIndex(num);
+        recup.setListAirport(listAirport);
+        Log.d("GetSet Results Après :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
         i.putExtra("index", num);
         i.putExtra("listAirport", listAirport);
         startActivity(i);
@@ -259,7 +268,7 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     public void onClickAdd(ArrayList<Airport> listAirport)
     {
-        Intent j = new Intent(Results.this, Accueil.class);
+        Intent j = new Intent(ResultsActivity.this, Accueil.class);
         j.putExtra("listAirport", listAirport);
         startActivity(j);
 

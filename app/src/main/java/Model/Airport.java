@@ -1,4 +1,4 @@
-package com.example.ensim.snowtam;
+package Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

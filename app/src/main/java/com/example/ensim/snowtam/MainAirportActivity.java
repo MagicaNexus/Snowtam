@@ -10,19 +10,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainAirport extends AppCompatActivity implements OnMapReadyCallback {
+import Model.Airport;
+import Model.DetectSwipeGestureListener;
+import Model.PageFragment;
+import Model.SampleFragmentPagerAdapter;
+import Model.SnowtamDecode;
+import Model.SnowtamRecuperation;
+
+public class MainAirportActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private int index;
     private ArrayList<Airport> listAirport;
@@ -33,6 +37,8 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_airport);
+
+
 
         /*GESTURE*/
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
@@ -49,12 +55,28 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         listAirport = getIntent().getParcelableArrayListExtra("listAirport");
         index = getIntent().getIntExtra("index",0);
 
+        /*Set Snwotams Raw and Decode*/
+        SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
+        SnowtamDecode decodage = new SnowtamDecode();
+        Log.d("GetSet MainAirport :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
+        recup.setIndex(index);
+        recup.setListAirport(listAirport);
+
+
+
         /*Set Text*/
         airportName.setText(listAirport.get(index).getName());
         longitude.setText("" + listAirport.get(index).getLongitude());
         latitude.setText("" + listAirport.get(index).getLatitude());
 
+        /*Set onglet (je sais pas comment on dit en anglais)*/
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
+                MainAirportActivity.this));
 
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         /*Fragment Map*/
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
@@ -70,7 +92,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         if(index < listAirport.size()-1)
         {
             index++;
-            onClick(index, MainAirport.class);
+            onClick(index, MainAirportActivity.class);
         }
     }
 
@@ -80,7 +102,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
         if(index > 0)
         {
             index--;
-            onClick(index, MainAirport.class);
+            onClick(index, MainAirportActivity.class);
         }
     }
 
@@ -117,7 +139,7 @@ public class MainAirport extends AppCompatActivity implements OnMapReadyCallback
 
     public void onClick(int num, Class activity)
     {
-        Intent i = new Intent(MainAirport.this, activity);
+        Intent i = new Intent(MainAirportActivity.this, activity);
         i.putExtra("index", num);
         i.putExtra("listAirport", listAirport);
         startActivity(i);
