@@ -16,6 +16,8 @@ import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
+import Model.APIService;
+import Model.Airport;
 import Model.ListAirportLocation;
 import Model.ListAirportSnowtam;
 
@@ -195,7 +197,7 @@ public class Accueil extends AppCompatActivity {
                                         if (listAirport.size() >= airportsCode.size()) {
 
                                             if (OK) {
-                                                Intent intent = new Intent(Accueil.this, Results.class);
+                                                Intent intent = new Intent(Accueil.this, ResultsActivity.class);
                                                 Bundle bundle = new Bundle();
                                                 bundle.putParcelableArrayList("airports", listAirport);
                                                 intent.putExtras(bundle);

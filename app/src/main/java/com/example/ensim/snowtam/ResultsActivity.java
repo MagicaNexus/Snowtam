@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Results extends AppCompatActivity implements OnMapReadyCallback {
@@ -33,10 +34,12 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        NumberFormat nf = new DecimalFormat("0.####");
 
         final ConstraintLayout v0 = findViewById(R.id.constraintLayout0);
         final ConstraintLayout v1 = findViewById(R.id.constraintLayout1);
@@ -247,16 +250,10 @@ public class Results extends AppCompatActivity implements OnMapReadyCallback {
 
     public void onClick(int num)
     {
-        /*Intent j = new Intent(Results.this, tabs1.class);
-        j.putExtra("index", num);
-        j.putExtra("listairport", listAirport);
-        startActivity(j);
-
         Intent i = new Intent(Results.this, MainAirport.class);
         i.putExtra("index", num);
         i.putExtra("listAirport", listAirport);
         startActivity(i);
-*/
 
     }
 

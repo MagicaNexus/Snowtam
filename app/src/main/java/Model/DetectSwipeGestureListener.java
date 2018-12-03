@@ -1,7 +1,9 @@
-package com.example.ensim.snowtam;
+package Model;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+
+import com.example.ensim.snowtam.MainAirportActivity;
 
 /**
  * Created by Jerry on 4/18/2018.
@@ -18,13 +20,13 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
     private static int MAX_SWIPE_DISTANCE_Y = 1000;
 
     // Source activity that display message in text view.
-    private MainAirport activity = null;
+    private MainAirportActivity activity = null;
 
-    public MainAirport getActivity() {
+    public MainAirportActivity getActivity() {
         return activity;
     }
 
-    public void setActivity(MainAirport activity) {
+    public void setActivity(MainAirportActivity activity) {
         this.activity = activity;
     }
 

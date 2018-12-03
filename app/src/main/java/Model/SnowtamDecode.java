@@ -1,4 +1,4 @@
-package com.example.ensim.snowtam;
+package Model;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.ensim.snowtam;
+package Model;
 
 import android.content.Context;
 
@@ -6,6 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import Model.GsonRequest;
 import Model.ListAirportLocation;
 import Model.ListAirportSnowtam;
 
