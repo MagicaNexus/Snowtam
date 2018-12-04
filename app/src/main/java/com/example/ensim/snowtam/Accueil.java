@@ -16,10 +16,10 @@ import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
-import Model.APIService;
-import Model.Airport;
-import Model.ListAirportLocation;
-import Model.ListAirportSnowtam;
+import Services.SnowtamAPI.APIService;
+import Models.AirportModels.Airport;
+import Models.AirportModels.ListAirportLocation;
+import Models.AirportModels.ListAirportSnowtam;
 
 public class Accueil extends AppCompatActivity {
 

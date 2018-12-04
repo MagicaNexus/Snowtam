@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-import Model.Airport;
+import Models.AirportModels.Airport;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

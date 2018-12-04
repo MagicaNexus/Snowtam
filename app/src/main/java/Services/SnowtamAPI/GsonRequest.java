@@ -1,4 +1,4 @@
-package Model;
+package Services.SnowtamAPI;
 
 import android.util.Log;
 

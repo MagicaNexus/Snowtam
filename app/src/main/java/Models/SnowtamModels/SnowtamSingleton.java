@@ -1,11 +1,13 @@
-package Model;
+package Models.SnowtamModels;
 
 
 import java.util.ArrayList;
 
-public class SnowtamRecuperation{
-    private static SnowtamRecuperation instance;
-    private SnowtamRecuperation(){}
+import Models.AirportModels.Airport;
+
+public class SnowtamSingleton {
+    private static SnowtamSingleton instance;
+    private SnowtamSingleton(){}
     public ArrayList<Airport> getListAirport() {
         return listAirport;
     }
@@ -22,12 +24,21 @@ public class SnowtamRecuperation{
         this.index = index;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     private ArrayList<Airport> listAirport;
     private int index;
+    private String icon;
 
-    public static synchronized SnowtamRecuperation getInstance(){
+    public static synchronized SnowtamSingleton getInstance(){
         if(instance==null){
-            instance=new SnowtamRecuperation();
+            instance=new SnowtamSingleton();
         }
         return instance;
     }

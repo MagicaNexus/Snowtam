@@ -1,4 +1,4 @@
-package Model;
+package Models.AirportModels;
 
 import android.os.Parcel;
 import android.os.Parcelable;

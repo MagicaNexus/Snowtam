@@ -1,10 +1,13 @@
-package Model;
+package Services.SnowtamAPI;
 
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+
+import Models.AirportModels.ListAirportLocation;
+import Models.AirportModels.ListAirportSnowtam;
 
 public enum APIService {
     INSTANCE;

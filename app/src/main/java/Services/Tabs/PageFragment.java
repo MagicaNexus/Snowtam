@@ -1,4 +1,4 @@
-package Model;
+package Services.Tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ensim.snowtam.R;
+
+import Models.SnowtamModels.SnowtamDecode;
+import Models.SnowtamModels.SnowtamSingleton;
 
 public class PageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -32,7 +35,7 @@ public class PageFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
 
 
-        SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
+        SnowtamSingleton recup = SnowtamSingleton.getInstance();
         SnowtamDecode decode = new SnowtamDecode();
         Log.d("GetSet PageFragment :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
         if (recup.getListAirport() != null) {

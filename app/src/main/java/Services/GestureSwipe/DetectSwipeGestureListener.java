@@ -1,4 +1,4 @@
-package Model;
+package Services.GestureSwipe;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;

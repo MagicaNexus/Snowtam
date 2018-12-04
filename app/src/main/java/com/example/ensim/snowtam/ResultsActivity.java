@@ -20,9 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import Model.Airport;
-import Model.SnowtamDecode;
-import Model.SnowtamRecuperation;
+import Models.AirportModels.Airport;
+import Models.SnowtamModels.SnowtamDecode;
+import Models.SnowtamModels.SnowtamSingleton;
 
 public class ResultsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
@@ -256,7 +256,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
     public void onClick(int num)
     {
         Intent i = new Intent(ResultsActivity.this, MainAirportActivity.class);
-        SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
+        SnowtamSingleton recup = SnowtamSingleton.getInstance();
     //    recup.setIndex(num);
       //  recup.setListAirport(listAirport);
         i.putExtra("index", num);

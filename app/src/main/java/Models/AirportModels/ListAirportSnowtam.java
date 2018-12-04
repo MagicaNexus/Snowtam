@@ -1,6 +1,8 @@
-package Model;
+package Models.AirportModels;
 
 import java.util.ArrayList;
+
+import Models.AirportModels.AirportSnowtam;
 
 public class ListAirportSnowtam {
 

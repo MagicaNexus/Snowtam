@@ -1,4 +1,4 @@
-package Model;
+package Models.SnowtamModels;
 
 import java.util.ArrayList;
 
