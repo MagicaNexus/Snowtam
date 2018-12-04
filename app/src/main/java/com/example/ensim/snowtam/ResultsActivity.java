@@ -1,6 +1,7 @@
 package com.example.ensim.snowtam;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +10,18 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -26,6 +32,7 @@ import Models.SnowtamModels.SnowtamSingleton;
 
 public class ResultsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    private UiSettings mUiSettings;
     private ArrayList<Airport> listAirport = new ArrayList<>();
     private ArrayList<TextView> airportName = new ArrayList<>();
     private ArrayList<TextView> Longitude = new ArrayList<>();
@@ -224,18 +231,48 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
+        PolylineOptions rectOptions = new PolylineOptions();
         final ArrayList<LatLng> airport = new ArrayList<>();
         for(int j=0;j<listAirport.size();j++)
         {
             airport.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
             mMap.addMarker(new MarkerOptions().position(airport.get(j)).title(listAirport.get(j).getName()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(airport.get(j)));
+            if(listAirport.size()==2)
+                rectOptions.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport.get(0)));
-        mMap.setMinZoomPreference(5.0f);
-        mMap.setMaxZoomPreference(15.0f);
+        Polyline polyline = mMap.addPolyline(rectOptions
+                .color(Color.RED)
+                .geodesic(true)
+                .width(5));
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
+        if(listAirport.size() == 1) {
+            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(airport.get(0),10);
+            mMap.animateCamera(location);
+        }
+        if(listAirport.size() == 2)
+        {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(airport.get(1), 15));
+            map.animateCamera(CameraUpdateFactory.zoomIn());
+            map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(airport.get(0))      // Sets the center of the map to Mountain View
+                    .zoom(7)                   // Sets the zoom
+                    .tilt(30)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+        else
+        {
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(airport.get(0)));
+        }
+        mUiSettings = mMap.getUiSettings();
+        mUiSettings.setCompassEnabled(false);
+        mUiSettings.setMapToolbarEnabled(false);
+        mUiSettings.setZoomControlsEnabled(false);
+        mUiSettings.setScrollGesturesEnabled(true);
+        mUiSettings.setTiltGesturesEnabled(true);
+        mUiSettings.setRotateGesturesEnabled(true);
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -251,6 +288,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
                 }
             }
         });
+
     }
 
     public void onClick(int num)

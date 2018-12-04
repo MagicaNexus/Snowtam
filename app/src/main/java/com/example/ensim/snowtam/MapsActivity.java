@@ -3,10 +3,13 @@ package com.example.ensim.snowtam;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -17,6 +20,7 @@ import Models.AirportModels.Airport;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private UiSettings mUiSettings ;
     private ArrayList<Airport> listAirport;
     private int index;
 
@@ -39,10 +43,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         LatLng airport = new LatLng(listAirport.get(index).getLatitude(), listAirport.get(index).getLongitude());
         mMap.addMarker(new MarkerOptions().position(airport).title(listAirport.get(index).getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
-        mMap.setMinZoomPreference(16.0f);
-        mMap.setMaxZoomPreference(15.0f);
+        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(airport,14.0f);
+        mMap.animateCamera(location);
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mUiSettings = mMap.getUiSettings();
+        mUiSettings.setCompassEnabled(true);
+        mUiSettings.setMapToolbarEnabled(true);
+        mUiSettings.setZoomControlsEnabled(true);
+        mUiSettings.setScrollGesturesEnabled(true);
+        mUiSettings.setTiltGesturesEnabled(true);
+        mUiSettings.setRotateGesturesEnabled(true);
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(airport)      // Sets the center of the map to Mountain View
+                .zoom(15)                   // Sets the zoom
+                .tilt(60)                   // Sets the tilt of the camera to 30 degrees
+                .build();                   // Creates a CameraPosition from the builder
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
 

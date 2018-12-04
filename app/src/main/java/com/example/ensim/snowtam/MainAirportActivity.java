@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -45,6 +46,7 @@ import Services.WeatherAPI.WeatherHttpClient;
 
 public class MainAirportActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    private UiSettings mUiSettings;
     private int index;
     private ArrayList<Airport> listAirport;
     private GestureDetectorCompat gestureDetectorCompat = null;
@@ -119,12 +121,12 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
 
         /*Set Text*/
-        DecimalFormat df = new DecimalFormat("########.0000000");
+        DecimalFormat df = new DecimalFormat("########.000");
         cityName.setText(listAirport.get(index).getCityName() + " - " + listAirport.get(index).getICAO_Code());
-        countryName.setText("Country name : "+listAirport.get(index).getCountryName());
+        countryName.setText("Country : "+listAirport.get(index).getCountryName());
         airportName.setText(listAirport.get(index).getName() + " - " + listAirport.get(index).getICAO_Code());
-        longitude.setText("long : " + (df.format(listAirport.get(index).getLongitude())));
-        latitude.setText("lat : " + (df.format(listAirport.get(index).getLatitude())));
+        longitude.setText("Lon : " + (df.format(listAirport.get(index).getLongitude())));
+        latitude.setText("Lat : " + (df.format(listAirport.get(index).getLatitude())));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -204,14 +206,21 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
+        mUiSettings = mMap.getUiSettings();
+        mUiSettings.setCompassEnabled(false);
+        mUiSettings.setMapToolbarEnabled(false);
+        mUiSettings.setZoomControlsEnabled(false);
+        mUiSettings.setScrollGesturesEnabled(false);
+        mUiSettings.setTiltGesturesEnabled(false);
+        mUiSettings.setRotateGesturesEnabled(false);
 
         // Add a marker in Sydney and move the camera
         final LatLng airport = new LatLng(listAirport.get(index).getLatitude(), listAirport.get(index).getLongitude());
-        mMap.addMarker(new MarkerOptions().position(airport).title(listAirport.get(index).getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airport));
-        mMap.setMinZoomPreference(15.0f);
-        mMap.setMaxZoomPreference(16.0f);
+        mMap.setMinZoomPreference(10.0f);
+        mMap.setMaxZoomPreference(10.0f);
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -280,15 +289,16 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
             }
 
             Log.d("Temperature", Math.round((weather.temperature.getTemp() - 273.15)) + "°C");
-
             DecimalFormat df = new DecimalFormat("##.0");
-            //citytext.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
-            temp.setText("Temperature : " + df.format((weather.temperature.getTemp() - 273.15)) + "°C");
-            humi.setText("Humidity : " + weather.currentCondition.getHumidity() + "%");
-            press.setText("Pression : " + weather.currentCondition.getPressure() + " hPa");
-            windSpeed.setText("Wind speed : " + weather.wind.getSpeed() + " mps");
-            windDeg.setText("Wind deg : " + weather.wind.getDeg() + "°");
+            if(weather.currentCondition.getCondition() != null && weather.currentCondition.getDescr() != null)
+            {
+                condDescr.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescr() + ")");
+                temp.setText("Temperature : " + df.format((weather.temperature.getTemp() - 273.15)) + "°C");
+                humi.setText("Humidity : " + weather.currentCondition.getHumidity() + "%");
+                press.setText("Pression : " + weather.currentCondition.getPressure() + " hPa");
+                windSpeed.setText("Wind speed : " + weather.wind.getSpeed() + " mps");
+                windDeg.setText("Wind deg : " + weather.wind.getDeg() + "°");
+            }
 
         }
 
