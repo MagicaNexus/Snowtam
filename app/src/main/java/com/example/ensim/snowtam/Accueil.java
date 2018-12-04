@@ -55,22 +55,22 @@ public class Accueil extends AppCompatActivity {
             if (intent != null && listAirportGet !=null){
                 for(int x=0;x<listAirportGet.size();x++) {
                     if(x==0) {
-                        champs1.setText(listAirportGet.get(0).getICAO_Code());
+                        champs1.setText(listAirportGet.get(x).getICAO_Code());
                         champs2.setVisibility(View.VISIBLE);
                         sup2.setVisibility(View.VISIBLE);
                     }
                     if(x==1){
-                        champs2.setText(listAirportGet.get(0).getICAO_Code());
+                        champs2.setText(listAirportGet.get(x).getICAO_Code());
                         champs3.setVisibility(View.VISIBLE);
                         sup3.setVisibility(View.VISIBLE);
                     }
                     if(x==2){
-                        champs3.setText(listAirportGet.get(0).getICAO_Code());
+                        champs3.setText(listAirportGet.get(x).getICAO_Code());
                         champs4.setVisibility(View.VISIBLE);
                         sup4.setVisibility(View.VISIBLE);
                     }
                     if(x==3){
-                        champs4.setText(listAirportGet.get(0).getICAO_Code());
+                        champs4.setText(listAirportGet.get(x).getICAO_Code());
                     }
                     Log.d("machin", "truc : " + listAirportGet.get(x).getICAO_Code());
                 }
@@ -191,6 +191,8 @@ public class Accueil extends AppCompatActivity {
                                         ap.setLatitude(response.getData().get(0).getLatitude());
                                         ap.setLongitude(response.getData().get(0).getLongitude());
                                         ap.setName(response.getData().get(0).getAirport_name());
+                                        ap.setCountryName(response.getData().get(0).getCountryName());
+                                        ap.setCityName(response.getData().get(0).getCityName());
                                         ap.setICAO_Code(codeICAO);
                                         listAirport.add(ap);
                                     }

@@ -9,6 +9,8 @@ public class Airport implements Parcelable{
     private double longitude;
     private String snowtam;
     private String name;
+    private String countryName;
+    private String cityName;
 
 
     public Airport() {
@@ -16,12 +18,14 @@ public class Airport implements Parcelable{
 
 
 
-    public Airport(String ICAO_Code, double latitude, double longitude, String snowtam, String name) {
+    public Airport(String ICAO_Code, double latitude, double longitude, String snowtam, String name, String countryName, String cityName) {
         this.ICAO_Code = ICAO_Code;
         this.latitude = latitude;
         this.longitude = longitude;
         this.snowtam = snowtam;
         this.name=name;
+        this.countryName=countryName;
+        this.cityName=cityName;
 
     }
 
@@ -67,6 +71,8 @@ public class Airport implements Parcelable{
         longitude = in.readDouble();
         snowtam = in.readString();
         name = in.readString();
+        countryName = in.readString();
+        cityName=in.readString();
     }
 
     public static final Creator<Airport> CREATOR = new Creator<Airport>() {
@@ -92,6 +98,8 @@ public class Airport implements Parcelable{
         parcel.writeDouble(longitude);
         parcel.writeString(snowtam);
         parcel.writeString(name);
+        parcel.writeString(countryName);
+        parcel.writeString(cityName);
     }
 
 
@@ -101,5 +109,21 @@ public class Airport implements Parcelable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }

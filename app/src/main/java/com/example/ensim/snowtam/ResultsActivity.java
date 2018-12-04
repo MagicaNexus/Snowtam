@@ -18,7 +18,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import Model.Airport;
@@ -43,7 +42,6 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        NumberFormat nf = new DecimalFormat("0.####");
 
         final ConstraintLayout v0 = findViewById(R.id.constraintLayout0);
         final ConstraintLayout v1 = findViewById(R.id.constraintLayout1);
@@ -194,27 +192,30 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
 
-        v1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ResultsActivity.this.onClick(1);
-            }
-        });
-
-        v2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ResultsActivity.this.onClick(2);
-            }
-        });
-
-        v3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ResultsActivity.this.onClick(3);
-            }
-        });
-
+        if(add1.getVisibility()!=View.VISIBLE) {
+            v1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ResultsActivity.this.onClick(1);
+                }
+            });
+        }
+        if(add2.getVisibility()!=View.VISIBLE) {
+            v2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ResultsActivity.this.onClick(2);
+                }
+            });
+        }
+        if(add3.getVisibility()!=View.VISIBLE) {
+            v3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ResultsActivity.this.onClick(3);
+                }
+            });
+        }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewResults);
         mapFragment.getMapAsync(this);
 
@@ -256,12 +257,10 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
     {
         Intent i = new Intent(ResultsActivity.this, MainAirportActivity.class);
         SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
-        Log.d("GetSet Results Avant :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
-        recup.setIndex(num);
-        recup.setListAirport(listAirport);
-        Log.d("GetSet Results Après :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
+    //    recup.setIndex(num);
+      //  recup.setListAirport(listAirport);
         i.putExtra("index", num);
-        i.putExtra("listAirport", listAirport);
+        i.putExtra("listAirport", this.listAirport);
         startActivity(i);
 
     }
@@ -269,7 +268,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
     public void onClickAdd(ArrayList<Airport> listAirport)
     {
         Intent j = new Intent(ResultsActivity.this, Accueil.class);
-        j.putExtra("listAirport", listAirport);
+        j.putExtra("listAirport", this.listAirport);
         startActivity(j);
 
     }

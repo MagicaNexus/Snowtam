@@ -16,6 +16,8 @@ public class AirportLocation {
     private String countryCode;
     private String raw_metar;
     private String datetime;
+    private String countryName;
+    private String cityName;
 
 
     // Getter Methods
@@ -132,5 +134,21 @@ public class AirportLocation {
 
     public void setDatetime(String datetime) {
         this.datetime = datetime;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }

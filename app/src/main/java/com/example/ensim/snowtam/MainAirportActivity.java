@@ -1,12 +1,5 @@
 package com.example.ensim.snowtam;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -17,11 +10,18 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Model.Airport;
 import Model.DetectSwipeGestureListener;
-import Model.PageFragment;
 import Model.SampleFragmentPagerAdapter;
 import Model.SnowtamDecode;
 import Model.SnowtamRecuperation;
@@ -46,9 +46,11 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         gestureDetectorCompat = new GestureDetectorCompat(this, gestureListener);
 
         /*TextView*/
+        TextView countryName = findViewById(R.id.countryName);
         TextView airportName = findViewById(R.id.mainAirportName);
         TextView longitude = findViewById(R.id.longitude);
         TextView latitude = findViewById(R.id.latitude);
+        TextView cityName = findViewById(R.id.cityName);
 
 
         /*Get Intent*/
@@ -65,9 +67,12 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
 
         /*Set Text*/
-        airportName.setText(listAirport.get(index).getName());
-        longitude.setText("" + listAirport.get(index).getLongitude());
-        latitude.setText("" + listAirport.get(index).getLatitude());
+        DecimalFormat df = new DecimalFormat("########.0000000");
+        cityName.setText("City name : "+listAirport.get(index).getCityName());
+        countryName.setText("Country name : "+listAirport.get(index).getCountryName());
+        airportName.setText("Airport name : "+listAirport.get(index).getName());
+        longitude.setText("long : " + (df.format(listAirport.get(index).getLongitude())));
+        latitude.setText("lat : " + (df.format(listAirport.get(index).getLatitude())));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);

@@ -16,6 +16,7 @@ public class SnowtamDecode {
 
         if(!SnowtamCode.contains("Pas de SNOWTAM disponible pour cet aéroport")&&SnowtamCode.contains("A)")) {
 
+            String SnowtamDecode = "";
             for (int i = 0; i < 20; i++) {
                 listLettres.add("");
             }
@@ -24,10 +25,13 @@ public class SnowtamDecode {
 
             String s = SnowtamCode;
 
-            String[] split = s.split("A\\)");
-            //String poubelle = split[0];
-            listLettres.set(IndiceDerniereLettre, split[1]);
-            IndiceDerniereLettre = 0;
+            String[] split = null;
+            if(s.contains("A)")) {
+                split = s.split("A\\)");
+                //String poubelle = split[0];
+                listLettres.set(IndiceDerniereLettre, split[1]);
+                IndiceDerniereLettre = 0;
+            }
             //si B)
             if (split[1].contains("B)")) {
                 split = split[1].split("B\\)");
@@ -145,19 +149,12 @@ public class SnowtamDecode {
                 IndiceDerniereLettre = 19;
                 listLettres.set(IndiceDerniereLettre, split[1]);
             }
-
-
-/*
-        Log.d("Snowtam A",listLettres.get(0));
-        Log.d("Snowtam B",listLettres.get(1));
-        Log.d("Snowtam C",listLettres.get(2));
-        Log.d("Snowtam F",listLettres.get(5));
-
-*/
+            else {
+                this.DecodeSnowtam(split[1],nameAirport);
+            }
 
 
             //on decode le snowtam pour chaque lettre une a une
-            String SnowtamDecode = "";
             String temp = "";
 
 
@@ -312,7 +309,7 @@ public class SnowtamDecode {
             //On decode N
             if (listLettres.get(13) != "") {
                 //A implementer
-                SnowtamDecode += "N) ....... ";
+                SnowtamDecode += "N) "+listLettres.get(13);
                 SnowtamDecode += "\n";
             }
 
@@ -328,7 +325,7 @@ public class SnowtamDecode {
             //On decode R
             if (listLettres.get(17) != "") {
                 //A implementer
-                SnowtamDecode += "R) ....... ";
+                SnowtamDecode += "R) "+listLettres.get(17);
                 SnowtamDecode += "\n";
             }
 
