@@ -61,6 +61,7 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         setContentView(R.layout.activity_main_airport);
 
         SnowtamSingleton recup = SnowtamSingleton.getInstance();
+        SnowtamDecode sd=new SnowtamDecode();
 
 
 
@@ -97,31 +98,30 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         //Fleches pour swipper
         if(listAirport.size() == 1)
         {
-            left.setVisibility(View.GONE);
-            right.setVisibility(View.GONE);
-            Log.d("LEFT", "GONE");
-            Log.d("RIGHT", "GONE");
+            left.setVisibility(View.INVISIBLE);
+            right.setVisibility(View.INVISIBLE);
+            Log.d("LEFT", "INVISIBLE");
+            Log.d("RIGHT", "INVISIBLE");
         }
         else
         {
             if(index == 0)
             {
-                left.setVisibility(View.GONE);
+                left.setVisibility(View.INVISIBLE);
                 right.setVisibility(View.VISIBLE);
-                Log.d("LEFT", "GONE");
+                Log.d("LEFT", "INVISIBLE");
                 Log.d("RIGHT", "VISIBLE");
             }
             if(index+1 == listAirport.size())
             {
                 left.setVisibility(View.VISIBLE);
-                right.setVisibility(View.GONE);
+                right.setVisibility(View.INVISIBLE);
                 Log.d("LEFT", "VISIBLE");
-                Log.d("RIGHT", "GONE");
+                Log.d("RIGHT", "INVISIBLE");
             }
         }
 
         /*Set Snwotams Raw and Decode*/
-        SnowtamDecode decodage = new SnowtamDecode();
         Log.d("GetSet MainAirport :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
         Log.d("Taille de listAirport :", listAirport.size() + "");
         recup.setIndex(index);
@@ -136,8 +136,8 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         airportName.setText(listAirport.get(index).getName() + " - " + listAirport.get(index).getICAO_Code());
         longitude.setText("Lon : " + (df.format(listAirport.get(index).getLongitude())));
         latitude.setText("Lat : " + (df.format(listAirport.get(index).getLatitude())));
-        SnowtamDecode sd=new SnowtamDecode();
-        lastUpdate.setText("Last Update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
+
+        lastUpdate.setText("Last update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);

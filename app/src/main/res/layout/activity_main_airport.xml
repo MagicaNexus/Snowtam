@@ -169,42 +169,72 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/mainAirportName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="AirportName"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
 
     <TextView
         android:id="@+id/lastUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="lastUpdate"
         android:textColor="@android:color/white"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAirportName"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/mainAirportName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginBottom="8dp"
+        android:text="AirportName"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <ImageButton
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="right"
+        android:scaleX="-1"
+        android:scaleY="-1"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51"
+        app:srcCompat="?android:attr/homeAsUpIndicator" />
+
+    <ImageButton
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="left"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout0"
@@ -274,7 +304,7 @@
         <fragment
             android:id="@+id/mapViewAirport"
             class="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="0dp"
+            android:layout_width="124dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -285,7 +315,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Aiportinfo"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.087" />
 
         <TextView
             android:id="@+id/countryName"
@@ -358,69 +388,5 @@
         </android.support.v4.view.ViewPager>
 
     </LinearLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/bar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/mainAirportName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-
-            android:layout_marginBottom="8dp"
-            android:text="AirportName"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/left"
-            android:layout_width="wrap_content"
-            android:layout_height="49dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/mainAirportName"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/actionModeCloseDrawable"/>
-
-        <ImageButton
-            android:id="@+id/right"
-            android:layout_width="wrap_content"
-            android:layout_height="49dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:scaleX="-1"
-            android:scaleY="-1"
-            android:onClick="right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/mainAirportName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?android:attr/homeAsUpIndicator" />
-    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
