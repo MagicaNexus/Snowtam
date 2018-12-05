@@ -137,7 +137,15 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         longitude.setText("Lon : " + (df.format(listAirport.get(index).getLongitude())));
         latitude.setText("Lat : " + (df.format(listAirport.get(index).getLatitude())));
 
-        lastUpdate.setText("Last update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
+
+        Log.d("LAST UPDATE", "--" + sd.getLastUpdate(listAirport.get(index).getSnowtam()));
+
+        if(sd.getLastUpdate(listAirport.get(index).getSnowtam()).length() == 0)
+        {
+            lastUpdate.setText("No update");
+        }
+        else
+            lastUpdate.setText("Last update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);
