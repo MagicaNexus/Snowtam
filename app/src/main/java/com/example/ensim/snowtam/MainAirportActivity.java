@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,7 +59,6 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
     public TextView press;
     public TextView windSpeed;
     public TextView windDeg;
-
     public TextView humi;
 
 
@@ -91,20 +91,8 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         windSpeed = findViewById(R.id.windSpeed);
         windDeg = findViewById(R.id.windDeg);
         temp = findViewById(R.id.temp);
-
-        /*left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSwipeLeft();
-            }
-        });
-
-        right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSwipeRight();
-            }
-        });*/
+        ImageButton left = findViewById(R.id.left);
+        ImageButton right = findViewById(R.id.right);
 
 
 
@@ -112,9 +100,36 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         listAirport = getIntent().getParcelableArrayListExtra("listAirport");
         index = getIntent().getIntExtra("index",0);
 
+        //Fleches pour swipper
+        if(listAirport.size() == 1)
+        {
+            left.setVisibility(View.GONE);
+            right.setVisibility(View.GONE);
+            Log.d("LEFT", "GONE");
+            Log.d("RIGHT", "GONE");
+        }
+        else
+        {
+            if(index == 0)
+            {
+                left.setVisibility(View.GONE);
+                right.setVisibility(View.VISIBLE);
+                Log.d("LEFT", "GONE");
+                Log.d("RIGHT", "VISIBLE");
+            }
+            if(index+1 == listAirport.size())
+            {
+                left.setVisibility(View.VISIBLE);
+                right.setVisibility(View.GONE);
+                Log.d("LEFT", "VISIBLE");
+                Log.d("RIGHT", "GONE");
+            }
+        }
+
         /*Set Snwotams Raw and Decode*/
         SnowtamDecode decodage = new SnowtamDecode();
         Log.d("GetSet MainAirport :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
+        Log.d("Taille de listAirport :", listAirport.size() + "");
         recup.setIndex(index);
         recup.setListAirport(listAirport);
 
@@ -148,6 +163,17 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         /*Fragment Map*/
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewAirport);
         mapFragment.getMapAsync(this);
+    }
+
+    public void left(View view)
+    {
+        onSwipeRight();
+    }
+
+    public void right(View view)
+    {
+
+        onSwipeLeft();
     }
 
 
