@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/condIcon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Temperature : °C"
@@ -51,6 +50,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.472"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/condIcon"
             app:layout_constraintVertical_bias="0.0" />
@@ -195,18 +195,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:gravity="center"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="AirportName"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/left"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.003" />
 
     <ImageButton
         android:id="@+id/right"
@@ -312,7 +313,7 @@
             android:id="@+id/mapViewAirport"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="124dp"
-            android:layout_height="50dp"
+            android:layout_height="92dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"

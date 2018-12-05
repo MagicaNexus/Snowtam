@@ -45,8 +45,6 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
     private ArrayList<Airport> listAirport;
     private GestureDetectorCompat gestureDetectorCompat = null;
     public ImageView imgView;
-    public ImageView left;
-    public ImageView right;
     public TextView temp;
     public TextView condDescr;
     public TextView press;
@@ -77,8 +75,6 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         TextView latitude = findViewById(R.id.latitude);
         TextView cityName = findViewById(R.id.cityName);
         TextView lastUpdate = findViewById(R.id.lastUpdate);
-        left = findViewById(R.id.left);
-        right = findViewById(R.id.right);
         condDescr = findViewById(R.id.condDescr);
         temp =  findViewById(R.id.temp);
         humi = findViewById(R.id.hum);
@@ -130,7 +126,7 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
 
         /*Set Text*/
-        DecimalFormat df = new DecimalFormat("########.000");
+        DecimalFormat df = new DecimalFormat("########.00000");
         cityName.setText("City : "+listAirport.get(index).getCityName());
         countryName.setText("Country : "+listAirport.get(index).getCountryName());
         airportName.setText(listAirport.get(index).getName() + " - " + listAirport.get(index).getICAO_Code());

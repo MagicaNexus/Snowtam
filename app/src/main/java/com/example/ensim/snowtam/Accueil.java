@@ -2,6 +2,8 @@ package com.example.ensim.snowtam;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -47,6 +49,8 @@ public class Accueil extends AppCompatActivity {
         sup2.setVisibility(View.GONE);
         sup3.setVisibility(View.GONE);
         sup4.setVisibility(View.GONE);
+
+
 
         ArrayList<Airport> listAirportGet=new ArrayList<Airport>();
         Intent intent = getIntent();
@@ -181,7 +185,7 @@ public class Accueil extends AppCompatActivity {
                             }
 
                             if(ap.getSnowtam()==null){
-                                ap.setSnowtam("Pas de SNOWTAM disponible pour cet aéroport");
+                                ap.setSnowtam("No Snowtam for this airport" );
                             }
 
                             Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
@@ -223,8 +227,8 @@ public class Accueil extends AppCompatActivity {
                                             }
                                         }
                                         else{
-                                            if(cpteur==airportsCode.size()&&listAirport.size()==0) {
-                                                Toast.makeText(context, "Code ICAO non valide, ou l'API ne répond pas", duration).show();
+                                            if((cpteur==airportsCode.size()&&listAirport.size()==0)) {
+                                                Toast.makeText(context, "ICAO code invalid, or no internet connection", duration).show();
                                                 spinner.setVisibility(View.GONE);
                                             }
                                         }
@@ -245,6 +249,8 @@ public class Accueil extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d("SnowtamErreur",error.toString());
+                            if(error.toString().contains("No address associated with hostname"))
+                                Toast.makeText(context, "No internet connection", duration).show();
                         }
                     };
                     APIService.INSTANCE.searchAirportSnowtam(codeICAO, responseListener, errorListener,v.getContext());
@@ -254,7 +260,7 @@ public class Accueil extends AppCompatActivity {
 
 
                 if(!OK){
-                    Toast.makeText(context, "Vous devez remplir les champs", duration).show();
+                    Toast.makeText(context, "Please complete the field(s) below", duration).show();
                     spinner.setVisibility(View.GONE);
                 }
 
@@ -265,6 +271,8 @@ public class Accueil extends AppCompatActivity {
 
 
     }
+
+
 
 
 }

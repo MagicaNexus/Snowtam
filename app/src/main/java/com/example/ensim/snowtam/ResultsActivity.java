@@ -236,7 +236,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
         for(int j=0;j<listAirport.size();j++)
         {
             airport.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
-            mMap.addMarker(new MarkerOptions().position(airport.get(j)).title(listAirport.get(j).getName()));
+            mMap.addMarker(new MarkerOptions().position(airport.get(j)).title(listAirport.get(j).getName() + " airport | " + listAirport.get(j).getCityName()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(airport.get(j)));
             if(listAirport.size()==2)
                 rectOptions.add(new LatLng(listAirport.get(j).getLatitude(),listAirport.get(j).getLongitude()));
