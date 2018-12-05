@@ -3,7 +3,6 @@ package com.example.ensim.snowtam;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,7 +10,6 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,24 +22,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Models.AirportModels.Airport;
+import Models.SnowtamModels.SnowtamDecode;
+import Models.SnowtamModels.SnowtamSingleton;
 import Models.WeatherModels.Weather;
 import Services.GestureSwipe.DetectSwipeGestureListener;
 import Services.Tabs.SampleFragmentPagerAdapter;
-import Models.SnowtamModels.SnowtamDecode;
-import Models.SnowtamModels.SnowtamSingleton;
 import Services.WeatherAPI.JSONWeatherParser;
 import Services.WeatherAPI.WeatherHttpClient;
 
@@ -82,6 +75,7 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         TextView longitude = findViewById(R.id.longitude);
         TextView latitude = findViewById(R.id.latitude);
         TextView cityName = findViewById(R.id.cityName);
+        TextView lastUpdate = findViewById(R.id.lastUpdate);
         left = findViewById(R.id.left);
         right = findViewById(R.id.right);
         condDescr = findViewById(R.id.condDescr);
@@ -137,11 +131,13 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
         /*Set Text*/
         DecimalFormat df = new DecimalFormat("########.000");
-        cityName.setText(listAirport.get(index).getCityName() + " - " + listAirport.get(index).getICAO_Code());
+        cityName.setText("City : "+listAirport.get(index).getCityName());
         countryName.setText("Country : "+listAirport.get(index).getCountryName());
         airportName.setText(listAirport.get(index).getName() + " - " + listAirport.get(index).getICAO_Code());
         longitude.setText("Lon : " + (df.format(listAirport.get(index).getLongitude())));
         latitude.setText("Lat : " + (df.format(listAirport.get(index).getLatitude())));
+        SnowtamDecode sd=new SnowtamDecode();
+        lastUpdate.setText("Last Update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);

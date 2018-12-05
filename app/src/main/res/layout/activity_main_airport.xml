@@ -12,7 +12,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout1"
         android:layout_width="216dp"
-        android:layout_height="255dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -23,19 +23,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003">
+        app:layout_constraintTop_toBottomOf="@+id/lastUpdate"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/condIcon"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.24000001" />
+            app:layout_constraintTop_toBottomOf="@+id/condDescr"
+            app:layout_constraintVertical_bias="0.00999999" />
 
         <TextView
             android:id="@+id/temp"
@@ -51,8 +52,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35000002" />
+            app:layout_constraintTop_toBottomOf="@+id/condIcon"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView2"
@@ -62,7 +63,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Weather information"
+            android:text="Weather informations"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -78,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Description"
@@ -89,8 +92,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.14999998" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/hum"
@@ -107,7 +110,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/temp"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/press"
@@ -124,8 +128,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65" />
+            app:layout_constraintTop_toBottomOf="@+id/hum"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/windSpeed"
@@ -142,8 +146,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintTop_toBottomOf="@+id/press"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/windDeg"
@@ -160,28 +164,61 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.95" />
+            app:layout_constraintTop_toBottomOf="@+id/windSpeed"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/mainAirportName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="AirportName"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout0"
-        android:layout_width="0dp"
-        android:layout_height="255dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/lastUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:text="lastUpdate"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAirportName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/airport_border"
         android:backgroundTint="#66000010"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout1"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003">
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout1">
 
         <TextView
             android:id="@+id/latitude"
@@ -196,10 +233,9 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.95" />
+            app:layout_constraintTop_toBottomOf="@+id/cityName"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/cityName"
@@ -215,8 +251,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintTop_toBottomOf="@+id/countryName"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/longitude"
@@ -231,16 +267,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.95" />
+            app:layout_constraintTop_toBottomOf="@+id/latitude"
+            app:layout_constraintVertical_bias="0.0" />
 
         <fragment
             android:id="@+id/mapViewAirport"
             class="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="139dp"
-            android:layout_height="78dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -249,8 +284,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998" />
+            app:layout_constraintTop_toBottomOf="@+id/Aiportinfo"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/countryName"
@@ -266,26 +301,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="GPS"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.13" />
+            app:layout_constraintTop_toBottomOf="@+id/mapViewAirport"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/Aiportinfo"
@@ -294,8 +311,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Airport Information"
+            android:layout_marginBottom="14dp"
+            android:text="Airport Informations"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -322,7 +340,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout0">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/sliding_tabs"

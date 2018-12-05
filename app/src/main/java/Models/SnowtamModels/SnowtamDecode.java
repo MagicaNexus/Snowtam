@@ -5,11 +5,22 @@ import java.util.ArrayList;
 public class SnowtamDecode {
 
     String SnowtamCode;
-    //String SnowtamDecode="";
 
     ArrayList<String> listLettres=new ArrayList<String>();
 
 
+    public String getLastUpdate(String Snowtam){
+        String lastUpdate="";
+
+        if(Snowtam.contains("CREATED:")){
+            String[] temp=Snowtam.split("CREATED:");
+            temp=SupEnter(temp[1]).split("SOURCE");
+            lastUpdate=temp[0];
+        }
+
+
+        return lastUpdate;
+    }
 
     public String DecodeSnowtam(String SnowtamCode, String nameAirport){
         SnowtamCode=SupEnter(SnowtamCode);
