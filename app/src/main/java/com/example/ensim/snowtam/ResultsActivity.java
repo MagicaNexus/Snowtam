@@ -60,6 +60,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
         add1.setVisibility(View.GONE);
         add2.setVisibility(View.GONE);
         add3.setVisibility(View.GONE);
+        final ImageButton go0=findViewById(R.id.go0);
         final ImageButton go1=findViewById(R.id.go1);
         final ImageButton go2=findViewById(R.id.go2);
         final ImageButton go3=findViewById(R.id.go3);
@@ -121,7 +122,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
             Log.d("AirportSnowtam", "SNOWTAM = " + listAirport.get(i).getSnowtam());
             SnowtamDecode=truc.DecodeSnowtam(listAirport.get(i).getSnowtam(),listAirport.get(i).getName());
             Log.d("AirportSnowtamDecode", "SNOWTAM décodé = " + SnowtamDecode);
-            airportName.get(i).setText(listAirport.get(i).getName() +" - " + listAirport.get(i).getICAO_Code());
+            airportName.get(i).setText(listAirport.get(i).getName() +" \n " + listAirport.get(i).getICAO_Code());
             Longitude.get(i).setText("Lon. : " +  String.valueOf(df.format(listAirport.get(i).getLatitude())));
             Latitude.get(i).setText("Lat. : " + String.valueOf(df.format(listAirport.get(i).getLongitude())));
 
@@ -223,6 +224,36 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
                 }
             });
         }
+
+        go0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResultsActivity.this.onClick(0);
+            }
+        });
+
+        go1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResultsActivity.this.onClick(1);
+            }
+        });
+
+        go2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResultsActivity.this.onClick(2);
+            }
+        });
+
+        go3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResultsActivity.this.onClick(3);
+            }
+        });
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapViewResults);
         mapFragment.getMapAsync(this);
 
