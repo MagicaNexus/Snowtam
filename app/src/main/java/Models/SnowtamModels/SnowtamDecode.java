@@ -25,7 +25,7 @@ public class SnowtamDecode {
     public String DecodeSnowtam(String SnowtamCode, String nameAirport){
         SnowtamCode=SupEnter(SnowtamCode);
 
-        if(!SnowtamCode.contains("No Snowtam for this airport")&&SnowtamCode.contains("A)")) {
+        if(!SnowtamCode.contains("Pas de snowtam disponible pour cet aéroport.")&&SnowtamCode.contains("A)")&&!SnowtamCode.contains("No snowtam for this airport.")) {
 
             String SnowtamDecode = "";
             for (int i = 0; i < 20; i++) {
@@ -368,6 +368,9 @@ public class SnowtamDecode {
                 SnowtamDecode += "T)" + tmp;
                 SnowtamDecode += "\n";
             }
+
+            String[] str=SnowtamDecode.split("CREATED");
+            SnowtamDecode=str[0];
             return SnowtamDecode;
         }
         else{

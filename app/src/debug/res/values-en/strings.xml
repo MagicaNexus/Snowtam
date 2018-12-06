@@ -15,4 +15,5 @@
     <string name="wind_deg">Wind deg</string>
     <string name="Airport_info">Airport infos</string>
     <string name="meteo">Weather infos</string>
+    <string name="snowtam_err">No snowtam for this airport.</string>
 </resources>

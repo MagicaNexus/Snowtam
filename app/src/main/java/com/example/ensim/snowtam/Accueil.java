@@ -192,7 +192,7 @@ public class Accueil extends AppCompatActivity {
                             }
 
                             if(ap.getSnowtam()==null){
-                                ap.setSnowtam("No Snowtam for this airport" );
+                                ap.setSnowtam(getString(R.string.snowtam_err));
                             }
 
                             Response.Listener<ListAirportLocation> responseListener2 = new Response.Listener<ListAirportLocation>() {
