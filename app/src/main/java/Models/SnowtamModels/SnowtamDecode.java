@@ -25,7 +25,7 @@ public class SnowtamDecode {
     public String DecodeSnowtam(String SnowtamCode, String nameAirport){
         SnowtamCode=SupEnter(SnowtamCode);
 
-        if(!SnowtamCode.contains("Pas de SNOWTAM disponible pour cet aéroport")&&SnowtamCode.contains("A)")) {
+        if(!SnowtamCode.contains("No Snowtam for this airport")&&SnowtamCode.contains("A)")) {
 
             String SnowtamDecode = "";
             for (int i = 0; i < 20; i++) {
@@ -171,7 +171,7 @@ public class SnowtamDecode {
 
             //On decode A
             if (listLettres.get(0) != "") {
-                SnowtamDecode += "A) " + listLettres.get(0) + " - " + nameAirport;
+                SnowtamDecode += "A) Airport city : " + nameAirport + " - " + listLettres.get(0);
                 SnowtamDecode += "\n";
             }
             //On decode B
@@ -181,32 +181,32 @@ public class SnowtamDecode {
                 SnowtamDecode += "B) " + day + " ";
                 String month = temp.substring(0, 2);
                 month = getMonth(Integer.valueOf(month));
-                SnowtamDecode += month + " AT ";
+                SnowtamDecode += month + " at ";
                 String hour = temp.substring(4, 6);
                 String minutes = temp.substring(6, 8);
-                SnowtamDecode += hour + "h" + minutes + "UTC";
+                SnowtamDecode += hour + "H" + minutes + " UTC";
                 SnowtamDecode += "\n";
             }
 
             //On decode C
             if (listLettres.get(2) != "") {
-                SnowtamDecode += "C) RUNWAY " + listLettres.get(2);
+                SnowtamDecode += "C) Runway " + listLettres.get(2);
                 SnowtamDecode += "\n";
             }
 
             //On decode D
             if (listLettres.get(3) != "") {
-                SnowtamDecode += "D) CLEARED RUNWAY LENGTH  " + listLettres.get(3) + "M";
+                SnowtamDecode += "D) Cleared runway lenght  " + listLettres.get(3) + "M";
                 SnowtamDecode += "\n";
             }
 
             //On decode E
             if (listLettres.get(4) != "") {
-                SnowtamDecode += "E) CLEARED RUNWAY WIDTH " + listLettres.get(4) + "M";
+                SnowtamDecode += "E) Cleared runway width " + listLettres.get(4) + "M";
                 if (listLettres.get(4).contains("L")) {
-                    SnowtamDecode += " LEFT";
+                    SnowtamDecode += " left";
                 } else if (listLettres.get(4).contains("R")) {
-                    SnowtamDecode += " RIGHT";
+                    SnowtamDecode += " right";
                 }
                 SnowtamDecode += "\n";
             }
@@ -238,7 +238,7 @@ public class SnowtamDecode {
             //On decode H
             if (listLettres.get(7) != "") {
                 String[] conds = listLettres.get(7).split("/");
-                SnowtamDecode += "H) BRAKING ACTION Threshold: ";
+                SnowtamDecode += "H) Braking action Threshold: ";
                 SnowtamDecode += getCoefFrottement(conds[0]);
                 SnowtamDecode += " / Mid runway: ";
                 SnowtamDecode += getCoefFrottement(conds[1]);
@@ -258,17 +258,17 @@ public class SnowtamDecode {
             //On decode J
             if (listLettres.get(9) != "") {
                 String[] conds = listLettres.get(9).split("/");
-                SnowtamDecode += "J) CRITICAL SNOW BANK: ";
+                SnowtamDecode += "J) Critical Snow Bank : ";
                 SnowtamDecode += conds[0] + "cm / ";
                 if (conds[1].contains("L") && !conds[1].contains("LR")) {
                     conds = conds[1].split("L");
-                    SnowtamDecode += conds[0] + "m LEFT of Runway";
+                    SnowtamDecode += conds[0] + "m left of Runway";
                 } else if (conds[1].contains("R") && !conds[1].contains("LR")) {
                     conds = conds[1].split("R");
-                    SnowtamDecode += conds[0] + "m Right of Runway";
+                    SnowtamDecode += conds[0] + "m right of Runway";
                 } else if (conds[1].contains("LR")) {
                     conds = conds[1].split("LR");
-                    SnowtamDecode += conds[0] + "m RIGHT and LEFT of Runway";
+                    SnowtamDecode += conds[0] + "m right and left of Runway";
                 }
                 SnowtamDecode += "\n";
             }
@@ -279,11 +279,11 @@ public class SnowtamDecode {
                     String[] conds = listLettres.get(10).split("S ");
                     SnowtamDecode += "K) Lights obscured: YES ";
                     if (conds[1].contains("L") && !conds[1].contains("LR")) {
-                        SnowtamDecode += "LEFT of Runway";
+                        SnowtamDecode += "left of Runway";
                     } else if (conds[1].contains("R") && !conds[1].contains("LR")) {
-                        SnowtamDecode += "Right of Runway";
+                        SnowtamDecode += "left of Runway";
                     } else if (conds[1].contains("LR")) {
-                        SnowtamDecode += "RIGHT and LEFT of Runway";
+                        SnowtamDecode += "Right and left of Runway";
                     }
                 } else if (listLettres.get(10).contains("NO")) {
                     String[] conds = listLettres.get(10).split("O ");
@@ -304,9 +304,9 @@ public class SnowtamDecode {
             if (listLettres.get(11) != "") {
                 if (listLettres.get(11).contains("/")) {
                     String[] longs = listLettres.get(11).split("/");
-                    SnowtamDecode += "L) FURTHER CLEARANCE " + longs[0] + "m / " + SupEspace(longs[1]) + "m";
+                    SnowtamDecode += "L) Further clearance " + longs[0] + "m / " + SupEspace(longs[1]) + "m";
                 } else if (listLettres.get(11).contains("TOTAL")) {
-                    SnowtamDecode += "L) FURTHER CLEARANCE TOTAL";
+                    SnowtamDecode += "L) Further clearance total";
                 }
                 SnowtamDecode += "\n";
             }
@@ -328,7 +328,7 @@ public class SnowtamDecode {
             if (listLettres.get(15) != "") {
                 if (listLettres.get(15).contains("YES")) {
                     String[] conds = listLettres.get(15).split("S");
-                    SnowtamDecode += "P) SNOW BANKS: YES SPACE " + conds[1] + "m";
+                    SnowtamDecode += "P) Snow banks : YES SPACE " + conds[1] + "m";
                 }
                 SnowtamDecode += "\n";
             }
@@ -344,28 +344,28 @@ public class SnowtamDecode {
             if (listLettres.get(18) != "") {
                 temp = SupEspace(listLettres.get(18));
                 String day = temp.substring(2, 4);
-                SnowtamDecode += "S) NEXT OBSERVATION " + day + " ";
+                SnowtamDecode += "S) Next observation " + day + " ";
                 String month = temp.substring(0, 2);
                 month = getMonth(Integer.valueOf(month));
-                SnowtamDecode += month + " AT ";
+                SnowtamDecode += month + " at ";
                 String hour = temp.substring(4, 6);
                 String minutes = temp.substring(6, 8);
-                SnowtamDecode += hour + "h" + minutes + "UTC";
+                SnowtamDecode += hour + "H" + minutes + "UTC";
                 SnowtamDecode += "\n";
             }
 
             //On decode T
             if (listLettres.get(19) != "") {
-                String tmp = listLettres.get(19).replaceAll("CONTAMINATION", "\nCONTAMINATION");
-                tmp = tmp.replaceAll("RWY", "RUNWAY");
-                tmp = tmp.replaceAll("OBSERVATION", "\nOBSERVATION");
+                String tmp = listLettres.get(19).replaceAll("CONTAMINATION", " Contamination : ");
+                tmp = tmp.replaceAll("RWY", "runway");
+                tmp = tmp.replaceAll("OBSERVATION", "\nobservation : ");
                 tmp = tmp.replaceAll("\\.", ".\n");
                 tmp = tmp.replaceAll("100", "51–100%");
                 tmp = tmp.replaceAll("50", "26–50%");
                 tmp = tmp.replaceAll("25", "11–25%");
                 // tmp=tmp.replaceAll("10","less than 10%");
                 tmp = tmp.replaceAll("PERCENT", "");
-                SnowtamDecode += "T) " + tmp;
+                SnowtamDecode += "T)" + tmp;
                 SnowtamDecode += "\n";
             }
             return SnowtamDecode;

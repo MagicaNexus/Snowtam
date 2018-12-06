@@ -121,7 +121,7 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
         Log.d("GetSet MainAirport :", "Index : " + recup.getIndex() + " et listAirport" + recup.getListAirport());
         Log.d("Taille de listAirport :", listAirport.size() + "");
         recup.setIndex(index);
-        recup.setListAirport(listAirport);*/
+        recup.setListAirport(listAirport);
 
 
 

@@ -8,10 +8,11 @@ import com.android.volley.toolbox.Volley;
 
 import Models.AirportModels.ListAirportLocation;
 import Models.AirportModels.ListAirportSnowtam;
+import Models.SnowtamModels.SnowtamSingleton;
 
 public enum APIService {
     INSTANCE;
-    SnowtamRecuperation recup = SnowtamRecuperation.getInstance();
+    SnowtamSingleton recup = SnowtamSingleton.getInstance();
 
     public void searchLocation(String AirportCode, Response.Listener responseListener, Response.ErrorListener errorListener, Context context){
 

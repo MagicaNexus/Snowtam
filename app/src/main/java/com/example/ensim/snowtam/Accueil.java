@@ -34,7 +34,7 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        ImageButton addChamps = (ImageButton) this.findViewById(R.id.addChamps);
+        final ImageButton addChamps = (ImageButton) this.findViewById(R.id.addChamps);
         ImageButton valide = (ImageButton) this.findViewById(R.id.valide);
         final EditText champs1=(EditText) this.findViewById(R.id.champs1);
         final EditText champs2=(EditText) this.findViewById(R.id.champs2);
@@ -62,16 +62,19 @@ public class Accueil extends AppCompatActivity {
                         champs1.setText(listAirportGet.get(x).getICAO_Code());
                         champs2.setVisibility(View.VISIBLE);
                         sup2.setVisibility(View.VISIBLE);
+
                     }
                     if(x==1){
                         champs2.setText(listAirportGet.get(x).getICAO_Code());
                         champs3.setVisibility(View.VISIBLE);
                         sup3.setVisibility(View.VISIBLE);
+
                     }
                     if(x==2){
                         champs3.setText(listAirportGet.get(x).getICAO_Code());
                         champs4.setVisibility(View.VISIBLE);
                         sup4.setVisibility(View.VISIBLE);
+
                     }
                     if(x==3){
                         champs4.setText(listAirportGet.get(x).getICAO_Code());
@@ -99,10 +102,12 @@ public class Accueil extends AppCompatActivity {
                 } else if (champs4.getVisibility() == View.GONE) {
                     champs4.setVisibility(View.VISIBLE);
                     sup4.setVisibility(View.VISIBLE);
+                    addChamps.setVisibility(View.INVISIBLE);
                 }
 
             }
         });
+
 
         //quand on suprime 2 ou 3, 4 devient 3 pour changer de place..
 
@@ -111,6 +116,7 @@ public class Accueil extends AppCompatActivity {
                 champs2.setVisibility(View.GONE);
                 sup2.setVisibility(View.GONE);
                 champs2.setText("");
+                addChamps.setVisibility(View.VISIBLE);
             }
         });
 
@@ -119,6 +125,7 @@ public class Accueil extends AppCompatActivity {
                 champs3.setVisibility(View.GONE);
                 sup3.setVisibility(View.GONE);
                 champs3.setText("");
+                addChamps.setVisibility(View.VISIBLE);
             }
         });
 
@@ -127,8 +134,10 @@ public class Accueil extends AppCompatActivity {
                 champs4.setVisibility(View.GONE);
                 sup4.setVisibility(View.GONE);
                 champs4.setText("");
+                addChamps.setVisibility(View.VISIBLE);
             }
         });
+
 
 
         valide.setOnClickListener(new View.OnClickListener() {
