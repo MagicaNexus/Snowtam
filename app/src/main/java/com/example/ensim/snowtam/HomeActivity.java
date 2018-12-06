@@ -235,7 +235,7 @@ public class HomeActivity extends AppCompatActivity {
                                         }
                                         else{
                                             if((cpteur==airportsCode.size()&&listAirport.size()==0)) {
-                                                Toast.makeText(context, "ICAO code invalid, or no response from the API", duration).show();
+                                                Toast.makeText(context, getString(R.string.toast_err), duration).show();
                                                 spinner.setVisibility(View.GONE);
                                             }
                                         }
@@ -257,7 +257,7 @@ public class HomeActivity extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             Log.d("SnowtamErreur",error.toString());
                             if(error.toString().contains("No address associated with hostname")) {
-                                Toast.makeText(context, "No internet connection", duration).show();
+                                Toast.makeText(context, getString(R.string.toast_internet), duration).show();
                                 spinner.setVisibility(View.GONE);
                             }
                         }
@@ -269,7 +269,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 if(!OK){
-                    Toast.makeText(context, "Please complete the field(s) below", duration).show();
+                    Toast.makeText(context, getString(R.string.toast_champs_vide), duration).show();
                     spinner.setVisibility(View.GONE);
                 }
 
