@@ -15,4 +15,5 @@
     <string name="no_update">Pas de mise à jour</string>
     <string name="Airport_info">Aéroport</string>
     <string name="meteo">Météo</string>
+    <string name="snowtam_err">Pas de snowtam disponible pour cet aéroport.</string>
 </resources>
