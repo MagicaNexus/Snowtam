@@ -127,8 +127,8 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
         /*Set Text*/
         DecimalFormat df = new DecimalFormat("########.00000");
-        cityName.setText("City : "+listAirport.get(index).getCityName());
-        countryName.setText("Country : "+listAirport.get(index).getCountryName());
+        cityName.setText(getString(R.string.city)+" : "+listAirport.get(index).getCityName());
+        countryName.setText(getString(R.string.country)+" : "+listAirport.get(index).getCountryName());
         airportName.setText(listAirport.get(index).getName() + " - " + listAirport.get(index).getICAO_Code());
         longitude.setText("Lon : " + (df.format(listAirport.get(index).getLongitude())));
         latitude.setText("Lat : " + (df.format(listAirport.get(index).getLatitude())));
@@ -138,10 +138,10 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
 
         if(sd.getLastUpdate(listAirport.get(index).getSnowtam()).length() == 0)
         {
-            lastUpdate.setText("No update");
+            lastUpdate.setText(getString(R.string.no_update));
         }
         else
-            lastUpdate.setText("Last update : "+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
+            lastUpdate.setText(getString(R.string.last_update)+sd.getLastUpdate(listAirport.get(index).getSnowtam()));
 
         /*Set onglet (je sais pas comment on dit en anglais)*/
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -319,11 +319,11 @@ public class MainAirportActivity extends AppCompatActivity implements OnMapReady
             if(weather.currentCondition.getCondition() != null && weather.currentCondition.getDescr() != null)
             {
                 condDescr.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescr() + ")");
-                temp.setText("Temperature : " + df.format((weather.temperature.getTemp() - 273.15)) + "°C");
-                humi.setText("Humidity : " + weather.currentCondition.getHumidity() + "%");
-                press.setText("Pression : " + weather.currentCondition.getPressure() + " hPa");
-                windSpeed.setText("Wind speed : " + weather.wind.getSpeed() + " mps");
-                windDeg.setText("Wind deg : " + weather.wind.getDeg() + "°");
+                temp.setText(getString(R.string.temperature)+ " : "+df.format((weather.temperature.getTemp() - 273.15)) + "°C");
+                humi.setText(getString(R.string.humidite) +" : "+ weather.currentCondition.getHumidity() + "%");
+                press.setText(getString(R.string.pression) +" : "+ weather.currentCondition.getPressure() + " hPa");
+                windSpeed.setText(getString(R.string.wind_speed) +" : "+weather.wind.getSpeed() + " mps");
+                windDeg.setText(getString(R.string.wind_deg)+" : "+ weather.wind.getDeg() + "°");
             }
 
         }

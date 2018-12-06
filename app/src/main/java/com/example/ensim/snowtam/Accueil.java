@@ -2,8 +2,6 @@ package com.example.ensim.snowtam;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,10 +16,10 @@ import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
-import Services.SnowtamAPI.APIService;
 import Models.AirportModels.Airport;
 import Models.AirportModels.ListAirportLocation;
 import Models.AirportModels.ListAirportSnowtam;
+import Services.SnowtamAPI.APIService;
 
 public class Accueil extends AppCompatActivity {
 
@@ -228,7 +226,7 @@ public class Accueil extends AppCompatActivity {
                                         }
                                         else{
                                             if((cpteur==airportsCode.size()&&listAirport.size()==0)) {
-                                                Toast.makeText(context, "ICAO code invalid, or no internet connection", duration).show();
+                                                Toast.makeText(context, "ICAO code invalid, or no response from the API", duration).show();
                                                 spinner.setVisibility(View.GONE);
                                             }
                                         }
@@ -249,8 +247,10 @@ public class Accueil extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d("SnowtamErreur",error.toString());
-                            if(error.toString().contains("No address associated with hostname"))
+                            if(error.toString().contains("No address associated with hostname")) {
                                 Toast.makeText(context, "No internet connection", duration).show();
+                                spinner.setVisibility(View.GONE);
+                            }
                         }
                     };
                     APIService.INSTANCE.searchAirportSnowtam(codeICAO, responseListener, errorListener,v.getContext());

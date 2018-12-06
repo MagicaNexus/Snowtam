@@ -3,4 +3,16 @@
     <string name="title_activity_accueil">Accueil</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_main_airport">Airport</string>
+    <string name="title_accueil">Codes ICAO</string>
+    <string name="last_update">Dernière mise à jour: </string>
+    <string name="country">Pays</string>
+    <string name="city">Ville</string>
+    <string name="temperature">Température</string>
+    <string name="humidite">Humidité</string>
+    <string name="pression">Pression</string>
+    <string name="wind_speed">Vitesse du vent</string>
+    <string name="wind_deg">Orient. du vent</string>
+    <string name="no_update">Pas de mise à jour</string>
+    <string name="Airport_info">Aéroport</string>
+    <string name="meteo">Météo</string>
 </resources>
