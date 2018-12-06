@@ -7,7 +7,7 @@
     android:background="@mipmap/fond1"
     android:backgroundTint="#59000000"
     android:backgroundTintMode="src_over"
-    tools:context=".Accueil">
+    tools:context=".AccueilActivity">
 
 
     <TextView
