@@ -178,7 +178,7 @@ public class SnowtamDecode {
             if (listLettres.get(1) != "") {
                 temp = SupEspace(listLettres.get(1));
                 String day = temp.substring(2, 4);
-                SnowtamDecode += "B) " + day + " ";
+                SnowtamDecode += "B) Last update : " + day + " ";
                 String month = temp.substring(0, 2);
                 month = getMonth(Integer.valueOf(month));
                 SnowtamDecode += month + " at ";
@@ -190,7 +190,7 @@ public class SnowtamDecode {
 
             //On decode C
             if (listLettres.get(2) != "") {
-                SnowtamDecode += "C) Runway " + listLettres.get(2);
+                SnowtamDecode += "C) Runway : " + listLettres.get(2);
                 SnowtamDecode += "\n";
             }
 
