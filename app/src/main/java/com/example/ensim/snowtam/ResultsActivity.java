@@ -336,7 +336,7 @@ public class ResultsActivity extends AppCompatActivity implements OnMapReadyCall
 
     public void onClickAdd(ArrayList<Airport> listAirport)
     {
-        Intent j = new Intent(ResultsActivity.this, AccueilActivity.class);
+        Intent j = new Intent(ResultsActivity.this, HomeActivity.class);
         j.putExtra("listAirport", this.listAirport);
         startActivity(j);
 

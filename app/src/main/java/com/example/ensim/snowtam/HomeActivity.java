@@ -21,7 +21,7 @@ import Models.AirportModels.ListAirportLocation;
 import Models.AirportModels.ListAirportSnowtam;
 import Services.SnowtamAPI.APIService;
 
-public class AccueilActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
     boolean OK=true;
@@ -30,7 +30,7 @@ public class AccueilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accueil);
+        setContentView(R.layout.activity_home);
 
         final ImageButton addChamps = (ImageButton) this.findViewById(R.id.addChamps);
         ImageButton valide = (ImageButton) this.findViewById(R.id.valide);
@@ -210,7 +210,7 @@ public class AccueilActivity extends AppCompatActivity {
                                         if (listAirport.size() >= airportsCode.size()) {
 
                                             if (OK) {
-                                                Intent intent = new Intent(AccueilActivity.this, ResultsActivity.class);
+                                                Intent intent = new Intent(HomeActivity.this, ResultsActivity.class);
                                                 Bundle bundle = new Bundle();
                                                 bundle.putParcelableArrayList("airports", listAirport);
                                                 intent.putExtras(bundle);
