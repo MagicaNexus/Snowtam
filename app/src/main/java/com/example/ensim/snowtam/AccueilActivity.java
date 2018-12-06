@@ -21,7 +21,7 @@ import Models.AirportModels.ListAirportLocation;
 import Models.AirportModels.ListAirportSnowtam;
 import Services.SnowtamAPI.APIService;
 
-public class Accueil extends AppCompatActivity {
+public class AccueilActivity extends AppCompatActivity {
 
     public static final ArrayList<Airport> listAirport = new ArrayList<Airport>();
     boolean OK=true;
@@ -210,7 +210,7 @@ public class Accueil extends AppCompatActivity {
                                         if (listAirport.size() >= airportsCode.size()) {
 
                                             if (OK) {
-                                                Intent intent = new Intent(Accueil.this, ResultsActivity.class);
+                                                Intent intent = new Intent(AccueilActivity.this, ResultsActivity.class);
                                                 Bundle bundle = new Bundle();
                                                 bundle.putParcelableArrayList("airports", listAirport);
                                                 intent.putExtras(bundle);
