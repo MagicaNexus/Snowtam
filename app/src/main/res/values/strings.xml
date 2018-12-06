@@ -16,4 +16,7 @@
     <string name="Airport_info">Aéroport</string>
     <string name="meteo">Météo</string>
     <string name="snowtam_err">Pas de snowtam disponible pour cet aéroport.</string>
+    <string name="toast_internet">Pas de connexion internet.</string>
+    <string name="toast_champs_vide">Veuillez remplir tous les champs.</string>
+    <string name="toast_err">"Code ICAO invalide, ou l'API ne répond pas."</string>
 </resources>
