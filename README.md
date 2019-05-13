@@ -1,5 +1,5 @@
 # Snowtam
-TP Applications et interfaces embarquées
+TP ENSIM 2018 - Application et interfaces embarquees - Application mobile pour les pilotes de ligne
 
 Cette application permet aux pilotes de ligne de connaitre l'etat d'une piste d'atterissage avant leur vol en sinplifiant les donnees SNOWTAM emises par les aeroports. Elle permet egalement de dommer la meteo et les trajets entre 2, 3 ou 4 aeroports.
 
